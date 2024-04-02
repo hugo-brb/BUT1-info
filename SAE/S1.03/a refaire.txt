@@ -1,0 +1,4 @@
+Capture 3
+Capture 7
+Capture 8
+xrandr | grep "*" | awk '{ print $1 }'
