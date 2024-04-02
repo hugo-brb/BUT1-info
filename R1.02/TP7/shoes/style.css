@@ -1,0 +1,99 @@
+body{
+    width: 1000px;
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+h1{
+    color: hotpink;
+}
+
+nav{
+    border-bottom: 2px solid black;
+    padding-bottom: 16px;
+    
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+}
+nav ul li{
+    list-style: none;  
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 16px;
+}
+
+#promo{
+    color: hotpink;
+}
+
+nav ul li a:hover{
+    background-color: black;
+    color: white;
+}
+
+.couple{
+    position: relative;
+}
+
+.btn{
+    display: flex;
+    gap: 3vh;
+    position: absolute;
+    top: 48%;
+    left: 21%;
+}
+.btn a{text-decoration: none;}
+.btn p {
+    background-color: white;
+    padding: 2vh;
+    color: black;
+    font-weight: bold;
+}
+.btn p:hover{
+    background-color: black;
+    color: white;
+}
+
+.petites_img{
+    display: flex;
+    justify-content: flex-start;
+    gap: 9px;
+}
+
+.petites_img img{
+    padding: 2px;
+    border: 2px solid  gray;
+}
+
+.petites_img img:hover{
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+footer li{
+    list-style: none;
+}
+
+footer li a{
+    color: hotpink;
+    text-underline-offset: 4px;
+}
+

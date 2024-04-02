@@ -1,0 +1,1 @@
+getent passwd | grep '/users/info/etu-1a/' | grep -v 'iutdeuxt' | cut -d':' -f5

@@ -1,0 +1,993 @@
+***********************************************
+BARBIERI Hugo - TP1 : Prise en main du shell
+***********************************************
+
+2. Introduction : shell et système de fichiers
+==============================================
+
+- SF = système de fichiers
+- entrée (sous entendu du SF) = fichier ou répertoire du SF
+- répertoire racine (root directory) = répertoire / 
+- répertoire père ou père d'une entrée (parent directory) = répertoire auquel cette entrée appartient
+	.. = designe le répertoire père
+- répertoire personnel (home directory, homedir) = répertoire qui nous est réservé pour stocker nos données. Il porte en général le nom de login de cet utilisateur
+	~ = désigne répertoire personnel
+- répertoire courant (working directory) = répertoire de travail du shell, celui dans lequel il est "positionné" à un instant donné
+	. = designe le répertoire courant 
+
+3. Utilisation de la ligne de commande
+======================================
+
+3.1 Lancer un shell
+-------------------
+
+1.
+
+barbiehu@pc-dg-027-10:~$ pwd
+/users/info/etu-1a/barbiehu
+
+2. 
+
+Le chemin affiché est bien celui de mon dossier personnel (ou homedir).
+
+3.
+
+Il s'agit du même chemin que celui affiché par Dolphin.
+
+4.
+
+barbiehu@pc-dg-027-10:~$ echo ~
+/users/info/etu-1a/barbiehu
+
+5.
+
+Le chemin affiché est celui de mon dossier personnel.
+
+3.2 Comandes et paramètres
+--------------------------
+
+1.~
+
+barbiehu@pc-dg-027-10:~$ ls
+Atelier-Linux  Documents  game.001  Music     proverbes.txt   Public  Templates
+Desktop        Downloads  log.001   Pictures  proverbes.txt~  R1.04   Videos
+
+2.
+
+R1.04 existe bien.
+
+3.
+
+barbiehu@pc-dg-027-10:~$ ls R1.04
+TP1
+barbiehu@pc-dg-027-10:~$ ls ~/R1.04***********************************************
+BARBIERI Hugo - TP1 : Prise en main du shell
+***********************************************
+
+2. Introduction : shell et système de fichiers
+==============================================
+
+- SF = système de fichiers
+- entrée (sous entendu du SF) = fichier ou répertoire du SF
+- répertoire racine (root directory) = répertoire / 
+- répertoire père ou père d'une entrée (parent directory) = répertoire auquel cette entrée appartient
+	.. = designe le répertoire père
+- répertoire personnel (home directory, homedir) = répertoire qui nous est réservé pour stocker nos données. Il porte en général le nom de login de cet utilisateur
+	~ = désigne répertoire personnel
+- répertoire courant (working directory) = répertoire de travail du shell, celui dans lequel il est "positionné" à un instant donné
+	. = designe le répertoire courant 
+
+3. Utilisation de la ligne de commande
+======================================
+
+3.1 Lancer un shell
+-------------------
+
+1.
+
+barbiehu@pc-dg-027-10:~$ pwd
+/users/info/etu-1a/barbiehu
+
+2. 
+
+Le chemin affiché est bien celui de mon dossier personnel (ou homedir).
+
+3.
+
+Il s'agit du même chemin que celui affiché par Dolphin.
+
+4.
+
+barbiehu@pc-dg-027-10:~$ echo ~
+/users/info/etu-1a/barbiehu
+
+5.
+
+Le chemin affiché est celui de mon dossier personnel.
+
+3.2 Comandes et paramètres
+--------------------------
+
+1.
+
+barbiehu@pc-dg-027-10:~$ ls
+Atelier-Linux  Documents  game.001  Music     proverbes.txt   Public  Templates
+Desktop        Downloads  log.001   Pictures  proverbes.txt~  R1.04   Videos
+
+2.
+
+R1.04 existe bien.
+
+3.
+
+barbiehu@pc-dg-027-10:~$ ls R1.04
+TP1
+barbiehu@pc-dg-027-10:~$ ls ~/R1.04
+TP1
+barbiehu@pc-dg-027-10:~$ ls ./R1.04
+TP1
+barbiehu@pc-dg-027-10:~$ ls /users/info/etu-1a/barbiehu/R1.04
+TP1
+
+4.
+
+- Pour : ls R1.04, la référence est relative, nous n'indiquons que le chemin depuis le répertoire courant.
+
+- Pour : ls ~/R1.04, la référence est absolue puisque l'on indique tout le chemin en designant répertoire personnel (~). Cette commande marcherai donc peut importe dans quel répertoire je me trouve avec le shell.
+
+- Pour : ls ./R1.04, la référence est relative, nous n'indiquons seulement dans le chemin que l'on commence le chemin depuis le répertoire courant.
+
+- Pour : ls /users/info/etu-1a/barbiehu/R1.04, la réference est absolue, nous indiquons le chemin entier pour accéder au fichier. Cette commande marcherai depuis n'importe quelle répertoire.
+
+3.3 Sensibilité à la casse et messages d'erreur
+-----------------------------------------------
+
+1.
+
+barbiehu@pc-dg-027-10:~$ ls r1.04
+ls: cannot access 'r1.04': No such file or directory
+
+2.2h sur stations Linux, pendant la semaine de contrôles de novembre.
+Exemple de sujet de contrôle
+
+Le message d'erreur affiché est : " ls: cannot access 'r1.04': No such file or directory ".
+Ce qui signifie l'erreur vient de la commande ls, en effet le shell ne peux pas accéder au répertoire 'r1.04' car il ne trouve aucun fichier ou répertoire avec ce nom.
+
+3.
+
+barbiehu@pc-dg-027-10:~$ LS
+bash: LS: command not found
+barbiehu@pc-dg-027-10:~$ Ls
+bash: Ls: command not found
+
+4.
+
+Le message d'erreur affiché est : " bash: LS: command not found " ou " bash: Ls: command not found " .
+Ce qui signifie que l'erreur vient du bash (le shell), en effet la commande LS ou Ls n'existe pas pour le shell, il ne peut donc pas les utiliser.
+
+5.
+barbiehu@pc-dg-027-10:~$ sl
+* Un petit train apparaît *
+
+3.4 Edition de la ligne de commande
+-----------------------------------
+
+1. 2. 3. 4. 5. 6. 7.
+
+FAIT
+
+barbiehu@pc-dg-027-10:~$ lslslbarbiehu@pc-dg-027-10:~$ lslsl
+
+3.5 Complétion automatique
+--------------------------
+
+1. 2. 
+
+FAIT
+
+3.
+
+barbiehu@pc-dg-027-10:~$ ls toto/
+
+La ligne ce remplit automatiquement avec le nom du répertoire toto.
+
+4.
+
+barbiehu@pc-dg-027-10:~$ ls R1.0
+R1.01/ R1.04/ 
+barbiehu@pc-dg-027-10:~$ ls R1.0
+
+Le premier appuie permet de completer la ligne avec R1.0, le deuxième ne fait rien et le troisième affiche la liste des répertoire contenant R1.0 dans leur nom.
+
+5.
+
+barbiehu@pc-dg-027-10:~$ RR1.04-commande-très-longue-à-taper 
+Bonjour, barbiehu !
+
+La ligne se remplie avec une commande en s'executant elle affiche le message : "Bonjour, barbiehu !"
+
+3.6 Historique du shell
+-----------------------
+
+1. 2. 3.
+
+barbiehu@pc-dg-027-10:~$ echo R1.04
+R1.04
+
+4.
+
+barbiehu@pc-dg-027-10:~$ history
+    1  pwd
+    2  echo ~
+    3  ls
+    4  ls R1.04
+    5  ls ~/R1.04
+    6  ls ./R1.04
+    7  ls /users/info/etu-1a/barbiehu/R1.04
+    8  ls r1.04
+    9  LS
+   10  Ls
+   11  sl
+   12  lslslbarbiehu@pc-dg-027-10:~$ lslsl
+   13  ls toto/
+   14  ls R1.0
+   15  RR
+   16  RR1.04-commande-très-longue-à-taper 
+   17  echo ~
+   18  echo R1.04
+   19  history
+
+
+5.
+
+On trouve 3 fois la commande echo (ayant relancer la commande echo ~ sans faire exprès).
+
+3.7 Interruption d'une commande par Ctrl-c
+------------------------------------------
+
+1. 2.
+
+barbiehu@pc-dg-027-10:~$ boucle-infinie
+0
+1
+2
+3
+4
+^C
+barbiehu@pc-dg-027-10:~$ 
+
+3.
+
+barbiehu@pc-dg-027-10:~$ kcalc
+^C
+barbiehu@pc-dg-027-10:~$ 
+
+4.
+
+Cela a pour effet de fermer la fenêtre du logiciel.
+
+3.8 Lancement d'une commande en arrière plan (&)
+------------------------------------------------
+
+1. 
+
+barbiehu@pc-dg-027-10:~$ kcalc &
+[1] 7660
+
+2.
+
+[1] 7660
+
+3.
+
+Une nouvelle ligne est apparu ou nous pouvons écrire d'autres commande. Le shell est donc toujours utilisable.
+
+4. Commandes Unix/Linux de base
+===============================
+
+4.1 Documentation en ligne (man)
+--------------------------------
+
+1. 2. 
+
+FAIT
+
+3. 
+
+ls -l
+
+4.
+
+barbiehu@pc-dg-027-10:~$ ls -l
+total 56
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:20 Atelier-Linux
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:59 Desktop
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Documents
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:34 Downloads
+-rw-r--r-- 1 barbiehu infobut1    0  6 sept. 15:54 game.001
+-rw-r--r-- 1 barbiehu infobut1  137  6 sept. 15:54 log.001
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Music
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Pictures
+-rw-r--r-- 1 barbiehu infobut1  282  6 sept. 15:18 proverbes.txt~
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Public
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:29 R1.01
+drwxr-xr-x 3 barbiehu infobut1 4096 14 sept. 07:53 R1.04
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Templates
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:30 toto
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Videos
+
+5. 
+
+FAIT
+
+4.2 Opérations sur les répertoires
+----------------------------------
+
+barbiehu@pc-dg-027-10:~$ pwd
+ls -l
+/users/info/etu-1a/barbiehu
+total 56
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:20 Atelier-Linux
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:59 Desktop
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Documents
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:34 Downloads
+-rw-r--r-- 1 barbiehu infobut1    0  6 sept. 15:54 game.001
+-rw-r--r-- 1 barbiehu infobut1  137  6 sept. 15:54 log.001
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Music
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Pictures
+-rw-r--r-- 1 barbiehu infobut1  282  6 sept. 15:18 proverbes.txt~
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Public
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:29 R1.01
+drwxr-xr-x 3 barbiehu infobut1 4096 14 sept. 07:53 R1.04
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Templates
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:30 toto
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Videos
+_____
+
+barbiehu@pc-dg-027-10:~$ ls -l R1.04
+total 4
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:51 TP1
+_____
+
+barbiehu@pc-dg-027-10:~$ 
+cd R1.04
+pwd
+ls -l
+/users/info/etu-1a/barbiehu/R1.04
+total 4
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:53 TP1
+barbiehu@pc-dg-027-10:~/R1.04$ 
+_____
+
+barbiehu@pc-dg-027-10:~/R1.04$ cd ..
+pwd
+/users/info/etu-1a/barbiehu
+barbiehu@pc-dg-027-10:~$ 
+_____
+
+barbiehu@pc-dg-027-10:~$ 
+cd R1.04
+pwd
+mkdir toto
+cd toto
+pwd
+/users/info/etu-1a/barbiehu/R1.04
+/users/info/etu-1a/barbiehu/R1.04/toto
+barbiehu@pc-dg-027-10:~/R1.04/toto$ 
+_____
+
+barbiehu@pc-dg-027-10:~/R1.04/toto$ cd
+pwd
+/users/info/etu-1a/barbiehu
+barbiehu@pc-dg-027-10:~$ 
+_____
+
+barbiehu@pc-dg-027-10:~$ cd R1.04/toto
+pwd
+ls -l ..
+cd ../..
+pwd
+/users/info/etu-1a/barbiehu/R1.04/toto
+total 8
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:55 toto
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:54 TP1
+/users/info/etu-1a/barbiehu
+
+SUPPRIMER UN REPERTOIRE VIDE
+1. 2. 3.
+
+barbiehu@pc-dg-027-10:~$ cd R1.04
+barbiehu@pc-dg-027-10:~/R1.04$ rmdir toto
+
+4. 
+
+Cela a pour effet de supprimer le répertoire toto.
+
+SUPPRIMER UN REPERTOIRE NON VIDE
+1.
+
+barbiehu@pc-dg-027-10:~/R1.04$ mkdir rep1
+barbiehu@pc-dg-027-10:~/R1.04$ mkdir rep1/rep2
+barbiehu@pc-dg-027-10:~/R1.04$ rmdir rep1
+rmdir: failed to remove 'rep1': Directory not empty
+
+2. 
+
+Il affiche : " rmdir: failed to remove 'rep1': Directory not empty "
+L'erreur provient du fait que le répertoire est non vide.
+
+3. 
+
+FAIT
+
+4.
+
+barbiehu@pc-dg-027-10:~/R1.04$ rm -f -r rep1
+
+4.3 Opérations sur les fichiers
+
+barbiehu@pc-dg-027-10:~/R1.04$ cd
+barbiehu@pc-dg-027-10:~$ ls -l /users/info/pub/1a/R1.04/tp-fichiers/
+total 80
+-rw-r--r-- 1 bonnaudl info 14859  9 sept.  2013 Avare.txt
+drwxr-xr-x 2 bonnaudl info  4096 11 oct.   2021 dossier
+-rw-r--r-- 1 bonnaudl info   413 30 sept.  2021 Essai.class
+-rw-r--r-- 1 bonnaudl info   131 30 sept.  2021 Essai.java
+-rwxr-xr-x 1 bonnaudl info    17 25 oct.   2021 essai-script
+-rw-r--r-- 1 bonnaudl info   430  8 oct.   2021 Prg.class
+-rw-r--r-- 1 bonnaudl info   153  3 oct.   2021 Prg.java
+-rw-r--r-- 1 bonnaudl info   282  3 oct.   2021 Proverbes.txt
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto1
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto2
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto3
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto4
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto5
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto6
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto7
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto8
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto9
+barbiehu@pc-dg-027-10:~$ cp /users/info/pub/1a/R1.04/tp-fichiers/Avare.txt R1.04/tp1/
+barbiehu@pc-dg-027-10:~$ cd R1.04/tp1/
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ ls -l
+total 36
+-rw-r--r-- 1 barbiehu infobut1 14859 14 sept. 09:09 Avare.txt
+-rw-r--r-- 1 barbiehu infobut1  9064 14 sept. 09:06 compte-rendu-tp1.txt
+-rw-r--r-- 1 barbiehu infobut1  5083 14 sept. 08:42 compte-rendu-tp1.txt~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TP1
+barbiehu@pc-dg-027-10:~$ ls ./R1.04
+TP1
+barbiehu@pc-dg-027-10:~$ ls /users/info/etu-1a/barbiehu/R1.04
+TP1
+
+4.
+
+- Pour : ls R1.04, la référence est relative, nous n'indiquons que le chemin depuis le répertoire courant.
+
+- Pour : ls ~/R1.04, la référence est absolue puisque l'on indique tout le chemin en designant répertoire personnel (~). Cette commande marcherai donc peut importe dans quel répertoire je me trouve avec le shell.
+
+- Pour : ls ./R1.04, la référence est relative, nous n'indiquons seulement dans le chemin que l'on commence le chemin depuis le répertoire courant.
+
+- Pour : ls /users/info/etu-1a/barbiehu/R1.04, la réference est absolue, nous indiquons le chemin entier pour accéder au fichier. Cette commande marcherai depuis n'importe quelle répertoire.
+
+3.3 Sensibilité à la casse et messages d'erreur
+-----------------------------------------------
+
+1.
+
+barbiehu@pc-dg-027-10:~$ ls r1.04
+ls: cannot access 'r1.04': No such file or directory
+
+2.
+
+Le message d'erreur affiché est : " ls: cannot access 'r1.04': No such file or directory ".
+Ce qui signifie l'erreur vient de la commande ls, en effet le shell ne peux pas accéder au répertoire 'r1.04' car il ne trouve aucun fichier ou répertoire avec ce nom.
+
+3.
+
+barbiehu@pc-dg-027-10:~$ LS
+bash: LS: command not found
+barbiehu@pc-dg-027-10:~$ Ls
+bash: Ls: command not found
+
+4.
+
+Le message d'erreur affiché est : " bash: LS: command not found " ou " bash: Ls: command not found " .
+Ce qui signifie que l'erreur vient du bash (le shell), en effet la commande LS ou Ls n'existe pas pour le shell, il ne peut donc pas les utiliser.
+
+5.
+barbiehu@pc-dg-027-10:~$ sl
+* Un petit train apparaît *
+
+3.4 Edition de la ligne de commande
+-----------------------------------
+
+1. 2. 3. 4. 5. 6. 7.
+
+FAIT
+
+barbiehu@pc-dg-027-10:~$ lslslbarbiehu@pc-dg-027-10:~$ lslsl
+
+3.5 Complétion automatique
+--------------------------
+
+1. 2. 
+
+FAIT
+
+3.
+
+barbiehu@pc-dg-027-10:~$ ls toto/
+
+La ligne ce remplit automatiquement avec le nom du répertoire toto.
+
+4.
+
+barbiehu@pc-dg-027-10:~$ ls R1.0
+R1.01/ R1.04/ 
+barbiehu@pc-dg-027-10:~$ ls R1.0
+
+Le premier appuie permet de completer la ligne avec R1.0, le deuxième ne fait rien et le troisième affiche la liste des répertoire contenant R1.0 dans leur nom.
+
+5.
+
+barbiehu@pc-dg-027-10:~$ RR1.04-commande-très-longue-à-taper 
+Bonjour, barbiehu !
+
+La ligne se remplie avec une commande en s'executant elle affiche le message : "Bonjour, barbiehu !"
+
+3.6 Historique du shell
+-----------------------
+
+1. 2. 3.
+
+barbiehu@pc-dg-027-10:~$ echo R1.04
+R1.04
+
+4.
+
+barbiehu@pc-dg-027-10:~$ history
+    1  pwd
+    2  echo ~
+    3  ls
+    4  ls R1.04
+    5  ls ~/R1.04
+    6  ls ./R1.04
+    7  ls /users/info/etu-1a/barbiehu/R1.04
+    8  ls r1.04
+    9  LS
+   10  Ls
+   11  sl
+   12  lslslbarbiehu@pc-dg-027-10:~$ lslsl
+   13  ls toto/
+   14  ls R1.0
+   15  RR
+   16  RR1.04-commande-très-longue-à-taper 
+   17  echo ~
+   18  echo R1.04
+   19  history
+
+
+5.
+
+On trouve 3 fois la commande echo (ayant relancer la commande echo ~ sans faire exprès).
+
+3.7 Interruption d'une commande par Ctrl-c
+------------------------------------------
+
+1. 2.
+
+barbiehu@pc-dg-027-10:~$ boucle-infinie
+0
+1
+2
+3
+4
+^C
+barbiehu@pc-dg-027-10:~$ 
+
+3.
+
+barbiehu@pc-dg-027-10:~$ kcalc
+^C
+barbiehu@pc-dg-027-10:~$ 
+
+4.
+
+Cela a pour effet de fermer la fenêtre du logiciel.
+
+3.8 Lancement d'une commande en arrière plan (&)
+------------------------------------------------
+
+1. 
+
+barbiehu@pc-dg-027-10:~$ kcalc &
+[1] 7660
+
+2.
+
+[1] 7660
+
+3.
+
+Une nouvelle ligne est apparu ou nous pouvons écrire d'autres commande. Le shell est donc toujours utilisable.
+
+4. Commandes Unix/Linux de base
+===============================
+
+4.1 Documentation en ligne (man)
+--------------------------------
+
+1. 2. 
+
+FAIT
+
+3. 
+
+ls -l
+
+4.
+
+barbiehu@pc-dg-027-10:~$ ls -l
+total 56
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:20 Atelier-Linux
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:59 Desktop
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Documents
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:34 Downloads
+-rw-r--r-- 1 barbiehu infobut1    0  6 sept. 15:54 game.001
+-rw-r--r-- 1 barbiehu infobut1  137  6 sept. 15:54 log.001
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Music
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Pictures
+-rw-r--r-- 1 barbiehu infobut1  282  6 sept. 15:18 proverbes.txt~
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Public
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:29 R1.01
+drwxr-xr-x 3 barbiehu infobut1 4096 14 sept. 07:53 R1.04
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Templates
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:30 toto
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Videos
+
+5. 
+
+FAIT
+
+4.2 Opérations sur les répertoires
+----------------------------------
+
+barbiehu@pc-dg-027-10:~$ pwd
+ls -l
+/users/info/etu-1a/barbiehu
+total 56
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:20 Atelier-Linux
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:59 Desktop
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Documents
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:34 Downloads
+-rw-r--r-- 1 barbiehu infobut1    0  6 sept. 15:54 game.001
+-rw-r--r-- 1 barbiehu infobut1  137  6 sept. 15:54 log.001
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Music
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Pictures
+-rw-r--r-- 1 barbiehu infobut1  282  6 sept. 15:18 proverbes.txt~
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Public
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:29 R1.01
+drwxr-xr-x 3 barbiehu infobut1 4096 14 sept. 07:53 R1.04
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Templates
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:30 toto
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Videos
+_____
+
+barbiehu@pc-dg-027-10:~$ ls -l R1.04
+total 4
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:51 TP1
+_____
+
+barbiehu@pc-dg-027-10:~$ 
+cd R1.04
+pwd
+ls -l
+/users/info/etu-1a/barbiehu/R1.04
+total 4
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:53 TP1
+barbiehu@pc-dg-027-10:~/R1.04$ 
+_____
+
+barbiehu@pc-dg-027-10:~/R1.04$ cd ..
+pwd
+/users/info/etu-1a/barbiehu
+barbiehu@pc-dg-027-10:~$ 
+_____
+
+barbiehu@pc-dg-027-10:~$ 
+cd R1.04
+pwd
+mkdir toto
+cd toto
+pwd
+/users/info/etu-1a/barbiehu/R1.04
+/users/info/etu-1a/barbiehu/R1.04/toto
+barbiehu@pc-dg-027-10:~/R1.04/toto$ 
+_____
+
+barbiehu@pc-dg-027-10:~/R1.04/toto$ cd
+pwd
+/users/info/etu-1a/barbiehu
+barbiehu@pc-dg-027-10:~$ 
+_____
+
+barbiehu@pc-dg-027-10:~$ cd R1.04/toto
+pwd
+ls -l ..
+cd ../..
+pwd
+/users/info/etu-1a/barbiehu/R1.04/toto
+total 8
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:55 toto
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:54 TP1
+/users/info/etu-1a/barbiehu
+
+SUPPRIMER UN REPERTOIRE VIDE
+1. 2. 3.
+
+barbiehu@pc-dg-027-10:~$ cd R1.04
+barbiehu@pc-dg-027-10:~/R1.04$ rmdir toto
+
+4. 
+
+Cela a pour effet de supprimer le répertoire toto.
+
+SUPPRIMER UN REPERTOIRE NON VIDE
+1.
+
+barbiehu@pc-dg-027-10:~/R1.04$ mkdir rep1
+barbiehu@pc-dg-027-10:~/R1.04$ mkdir rep1/rep2
+barbiehu@pc-dg-027-10:~/R1.04$ rmdir rep1
+rmdir: failed to remove 'rep1': Directory not empty
+
+2. 
+
+Il affiche : " rmdir: failed to remove 'rep1': Directory not empty "
+L'erreur provient du fait que le répertoire est non vide.
+
+3. 
+
+FAIT
+
+4.
+
+barbiehu@pc-dg-027-10:~/R1.04$ rm -f -r rep1
+
+4.3 Opérations sur les fichiers
+
+barbiehu@pc-dg-027-10:~/R1.04$ cd
+barbiehu@pc-dg-027-10:~$ ls -l /users/info/pub/1a/R1.04/tp-fichiers/
+total 80
+-rw-r--r-- 1 bonnaudl info 14859  9 sept.  2013 Avare.txt
+drwxr-xr-x 2 bonnaudl info  4096 11 oct.   2021 dossier
+-rw-r--r-- 1 bonnaudl info   413 30 sept.  2021 Essai.class
+-rw-r--r-- 1 bonnaudl info   131 30 sept.  2021 Essai.java
+-rwxr-xr-x 1 bonnaudl info    17 25 oct.   2021 essai-script
+-rw-r--r-- 1 bonnaudl info   430  8 oct.   2021 Prg.class
+-rw-r--r-- 1 bonnaudl info   153  3 oct.   2021 Prg.java
+-rw-r--r-- 1 bonnaudl info   282  3 oct.   2021 Proverbes.txt
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto1
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto2
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto3
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto4
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto5
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto6
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto7
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto8
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto9
+barbiehu@pc-dg-027-10:~$ cp /users/info/pub/1a/R1.04/tp-fichiers/Avare.txt R1.04/tp1/
+barbiehu@pc-dg-027-10:~$ cd R1.04/tp1/
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ ls -l
+total 36
+-rw-r--r-- 1 barbiehu infobut1 14859 14 sept. 09:09 Avare.txt
+-rw-r--r-- 1 barbiehu infobut1  9064 14 sept. 09:06 compte-rendu-tp1.txt
+-rw-r--r-- 1 barbiehu infobut1  5083 14 sept. 08:42 compte-rendu-tp1.txt~
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ cat Avare.txt
+-----------------------------------------------------------------------
+
+TITRE  : "L'Avare"
+GENRE  : comédie
+DATE   : 1668
+AUTEUR : Jean-Baptiste Poquelin, dit Molière (1622-1673).
+				(...)
+***********************************************************************
+On s'arrêtera ici pour l'instant, on reprendra la suite plus tard ...
+***********************************************************************
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ more Avare.txt 
+-----------------------------------------------------------------------
+
+TITRE  : "L'Avare"
+GENRE  : comédie
+DATE   : 1668
+AUTEUR : Jean-Baptiste Poquelin, dit Molière (1622-1673).
+				(...)
+CLEANTE.-- Non, ma soeur; mais vous n'aimez pas, vous ignorez la douce
+violence qu'un tendre amour fait sur nos coeurs, et j'appréhende votre
+sagesse.
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ less Avare.txt
+*ouvre un résumé dans une fenêtre a part.*
+*q pour quitter*
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ rm Avare.txt
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ ls -l
+total 32
+-rw-r--r-- 1 barbiehu infobut1 21997 14 sept. 09:17 compte-rendu-tp1.txt
+-rw-r--r-- 1 barbiehu infobut1  5083 14 sept. 08:42 compte-rendu-tp1.txt~
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ cp /users/info/pub/1a/R1.04/tp-fichiers/Avare.txt .
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ ls -l
+total 48
+-rw-r--r-- 1 barbiehu infobut1 14859 14 sept. 09:18 Avare.txt
+-rw-r--r-- 1 barbiehu infobut1 21997 14 sept. 09:17 compte-rendu-tp1.txt
+-rw-r--r-- 1 barbiehu infobut1  5083 14 sept. 08:42 compte-rendu-tp1.txt~
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ mv Avare.txt ..
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ cd ..
+barbiehu@pc-dg-027-10:~/R1.04$ ls -l
+total 20
+-rw-r--r-- 1 barbiehu infobut1 14859 14 sept. 09:18 Avare.txt
+drwxr-xr-x 2 barbiehu infobut1  4096 14 sept. 09:18 tp1
+barbiehu@pc-dg-027-10:~/R1.04$ mv Avare.txt Avare-1.0.txt
+barbiehu@pc-dg-027-10:~/R1.04$ ls -l
+total 20
+-rw-r--r-- 1 barbiehu infobut1 14859 14 sept. 09:18 Avare-1.0.txt
+drwxr-xr-x 2 barbiehu infobut1  4096 14 sept. 09:18 tp1
+barbiehu@pc-dg-027-10:~/R1.04$ 
+
+5. Commandes pour la programmation en Java
+==========================================
+
+1. 2. 3.
+
+barbiehu@pc-dg-027-10:~$ cd R1.04/tp1/
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ ls -l
+total 52
+-rw-r--r-- 1 barbiehu infobut1 23191 14 sept. 09:19 compte-rendu-tp1.txt
+-rw-r--r-- 1 barbiehu infobut1 23145 14 sept. 09:19 compte-rendu-tp1.txt~
+-rw-r--r-- 1 barbiehu infobut1   131 30 sept.  2021 Essai.java
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ javac Essai.java
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ ls -l
+total 56
+-rw-r--r-- 1 barbiehu infobut1 23238 14 sept. 09:22 compte-rendu-tp1.txt
+-rw-r--r-- 1 barbiehu infobut1 23145 14 sept. 09:19 compte-rendu-tp1.txt~
+-rw-r--r-- 1 barbiehu infobut1   413 14 sept. 09:22 Essai.class
+-rw-r--r-- 1 barbiehu infobut1   131 30 sept.  2021 Essai.java
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ java Essai
+Bonjour !
+
+4.
+
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ javac Essai.java
+barbiehu@pc-dg-027-10:~/R1.04/tp1$ java Essai
+Hello World !
+
+6. Questions de synthèse
+========================
+
+6.1 Commandes de base
+---------------------
+
+1.
+
+- Sur Dolphin (en haut au centre)
+- Sur le shell en bleu
+- La commande : pwd
+
+2.
+
+C'est la commande : pwd
+
+3.
+
+C'est la commande : cd ~
+
+4.
+
+Opération 		|    Fichier 	 |   Dossier
+------------------------+----------------+---------------------
+Afficher le contenu	|cat Nom_fichier | ls (-l)
+------------------------+----------------+---------------------
+Créer 			|cat Nom_fichier | mkdir Nom_Repertoire
+------------------------+----------------+---------------------
+Supprimer 		|rm Nom_ficher	 | rkdir Nom_Repertoire
+			|		 | OU rm Nom_Repertoire
+------------------------+----------------+--------------------- 
+Copier 			|cp c1/f1 c2/	 |cp c1/r1 c2/
+------------------------+----------------+---------------------
+Déplacer 		|mv c1/f1 c2/	 |mv c1/r1 c2/
+------------------------+----------------+---------------------
+Renommer		|mv c1/f1 c2/f2	 |mv c1/r1 c2/r2
+
+6.2 Désignation de fichiers
+---------------------------
+
+1.
+
+barbiehu
+
+2.
+
+/users/info/etu-1a/barbiehu
+
+3.
+
+Fichier exo1.java 				|Fichier exo2.java 					|Répertoire tp01
+------------------------------------------------+-------------------------------------------------------+----------------------------------------
+Chemin d'accès absolu complet 			|/users/info/etu-1a/barbiehu/Rx.y/tp01/exo1.java 	| /users/info/etu-1a/barbiehu/Rx.y/tp01/
+depuis la racine du système de fichiers		|							|
+------------------------------------------------+-------------------------------------------------------+---------------------------------------- 			
+Chemin d'accès absolu abrégé 			|~/Rx.y/tp01/exo1.java					|~/Rx.y/tp01/
+utilisant l'abréviation ~ 			|							|
+------------------------------------------------+-------------------------------------------------------+----------------------------------------			
+Chemin d'accès relatif en supposant 		|Rx.y/tp01/exo1.java					| Rx.y/tp01/
+que le répertoire courant est votre homedir ~ 	|							|
+------------------------------------------------+-------------------------------------------------------+----------------------------------------		
+Chemin d'accès relatif en supposant 		|tp01/exo1.java						|tp01/
+que le répertoire courant est ~/Rx.y 		|							|
+------------------------------------------------+-------------------------------------------------------+----------------------------------------			
+Chemin d'accès relatif en supposant 		| /exo1.java						| ./
+que le répertoire courant est ~/Rx.y/tp01 	|	
+
+4. 
+
+- cp Rx.y/tp01/exo1.java Rx.y/tp01/
+- cp tp01/exo1.java tp01/
+- cp exo1.java ./
+
+6.3 Résumé de commandes
+-----------------------
+
+Nom de la	Description de ce que fait la commande
+Commande
+
+cd		Change Directory
+		Change le répertoire courant
+		cd R1.04/tp1
+
+ls		list directory contents
+		Afficher le contenu de répertoires
+		ls R1.04
+
+ls -l		Affichage détaillé d'un fichier ou d'un répertoire
+		ls -l R1.04
+		ls -l toto.txt
+
+cat 		
+
+less
+
+mkdir
+
+cp
+
+cp -r
+
+mv
+
+rm
+
+rm -r
+
+java
+
+javac
+
+./toto		Exécution d'un programme dans le répertoire courant
+
+...		...

@@ -1,0 +1,168 @@
+div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div > * {
+  flex: 1 100%;
+}
+
+header,
+footer,
+div > * {
+  border: 1px solid gray;
+}
+
+@media (min-width: 800px) {
+  section {
+    flex: 3 0px;
+  }
+  section + aside {
+    order: 1;
+  }
+  section {
+    order: 2;
+  }
+  aside + aside {
+    order: 3;
+  }
+}
+
+@media (min-width: 600px) {
+  section + aside {
+    flex: 1 auto;
+  }
+  aside + aside {
+    flex: 1 auto;
+  }
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.9em;
+  margin: 50px;
+  background-image: url(bg-198-198.png);
+  background-repeat: repeat;
+  background-size: auto;
+  color: #4D4D4D;
+  counter-reset: h1 h2 h3;
+}
+h1 {
+  text-decoration: underline;
+  font-variant-caps: small-caps;
+  text-shadow: 2px, 2px, gray;
+  counter-reset: h2 h3;
+}
+h1::before{
+  content: counter(h1) ". ";
+  counter-increment: h1;
+}
+h2::before{
+  content: counter(h1) "." counter(h2) "  " ;     
+  counter-increment: h2 ; 
+}
+
+h3::before{
+  content: counter(h1) "." counter(h2) "." counter(h3) "  " ;     
+  counter-increment: h3 ; 
+}
+
+section > p {
+  text-align: justify;
+}
+
+footer > p {
+  font-style: italic;
+}
+
+header, section, aside, footer {
+  padding: 10px;
+}
+
+header {
+  background-color: #ff623f;
+}
+section {
+  background-color: #00beff;
+}
+
+footer {
+  background-color: #8df08c;
+}
+
+#p2 {
+  background-color: #ffd900;
+}
+
+#p4 {
+  background-color: #ff66b5;
+}
+
+img {
+  opacity: 0.6;
+}
+
+img:hover {
+  opacity: initial;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ol {
+  list-style-type: upper-roman;
+}
+
+table {
+  table-layout: fixed;
+  width: auto;
+  border-collapse: collapse;
+  border: 2px solid yellow;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 2px solid yellow;
+}
+
+th {
+  background-color: #008081;
+  color: white;
+}
+
+a {
+  background-color: blue;
+  text-decoration: underline white;
+  color: white;
+}
+
+a:visited {
+  background-color: mediumslateblue;
+  text-decoration: underline white;
+  color: white;
+}
+
+a:hover {
+  background-color: white;
+  color: blue;
+}
+
+a:active {
+  background-color: white;
+  color: #ff623f;
+}
+
+p::first-letter{
+  color: red;
+  font-size: xx-large;
+}
+
+caption {
+  color: #007f81;
+  font-weight: bold;
+  font-size: larger;
+  text-decoration: underline;
+  caption-side: bottom;
+}

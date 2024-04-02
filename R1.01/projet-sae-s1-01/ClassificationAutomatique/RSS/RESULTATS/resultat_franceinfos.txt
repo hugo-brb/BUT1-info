@@ -1,0 +1,5 @@
+001 : Environnement-Sciences
+002 : Politique
+Environnement-Sciences : 100.0%
+Politique : 100.0%
+==> Moyenne : 40.0%

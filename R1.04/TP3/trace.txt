@@ -1,0 +1,26 @@
+total 24
+-rw-r--r-- 1 barbiehu infobut1 344 28 sept. 08:00 Compte-rendu-tp3
+-rw-r--r-- 1 barbiehu infobut1 340 28 sept. 08:00 Compte-rendu-tp3~
+-rwxr-xr-x 1 barbiehu infobut1  43 25 sept. 15:49 liste1a
+-rwxr-xr-x 1 barbiehu infobut1  64 25 sept. 15:47 liste1a-vrais
+-rwxr-xr-x 1 barbiehu infobut1  80 25 sept. 15:48 liste1a-vrais-noms
+-rw-r--r-- 1 barbiehu infobut1  76 11 oct.   2021 mots
+-rw-r--r-- 1 barbiehu infobut1   0 28 sept. 08:08 trace.txt
+
+    PID TTY          TIME CMD
+   8178 pts/1    00:00:00 bash
+  10939 pts/1    00:00:00 ps
+  
+réseau
+bases de données
+programmation
+informatique
+système
+modélisation
+
+bases de données
+informatique
+modélisation
+programmation
+réseau
+système

@@ -1,0 +1,253 @@
+*************************************************************
+BARBIERI Hugo - TP4 : Espace disque, Quotas, Archivage
+*************************************************************
+
+2. Espace disque
+=================
+
+2.1 Inventaire des disques et partitions
+-----------------------------------------
+
+2.
+
+1 : nvme0n1
+
+3. 
+
+Autant qu'il y a d'utilisateurs.
+
+2.2 Taille et remplissage des partitions
+-----------------------------------------
+
+Périphérique de stockage 	| Espace total(en Go) 	| Espace libre(en Go)
+--------------------------------+-----------------------+----------------------
+SSD de la station 		|	234		|	145
+--------------------------------+-----------------------+----------------------
+Serveur de fichiers erebus4 	|	1800		|	1500
+--------------------------------+-----------------------+----------------------
+Éventuelle clé USB 		|	   -		|	-
+
+2.
+
+ext4
+
+3.
+
+nfs4
+
+2.3 Quotas
+-----------
+
+				| Place disque(en Mo)		| Nombre de fichiers
+--------------------------------+-------------------------------+----------------------
+Occupation actuelle 		|	61424			|	1577
+--------------------------------+-------------------------------+----------------------
+Quota				|	1500000			|	200000
+--------------------------------+-------------------------------+---------------------- 		
+Limite				|	1550000			|	205000
+--------------------------------+-------------------------------+---------------------- 		
+Occupation en fin de TP 	|				|
+une fois le ménage effectué	|				|
+(cases à remplir plus tard) 	|				|
+
+2.4 Espace occupé par une entrée
+---------------------------------
+
+1.
+
+216ko
+
+2.
+
+60Mo
+
+3.
+
+A 1000Mo près oui
+
+--> NCDU
+
+	2.
+	
+	/.mozilla  (42,3MiB)
+	
+	3.
+	
+	/firefox  (42,3MiB)
+	
+--> qdirstat
+
+	2.
+	
+	.mozilla
+	.eclipse
+	.local
+	
+2.5 Reduction de la place disque occupée sur l'espace disque du serveur erebus4
+--------------------------------------------------------------------------------
+
+2.
+
+find ~ | grep '.class'
+
+3.
+
+rm R1.*/TP*/*/*/*/*.class
+
+4.
+
+Bien supprimé (même commande que la question 2)
+
+5.
+
+rm ~/R*/tp*/*~
+
+3. Archivage d'un répertoire
+=============================
+
+3.1 Création d'une archive à partir d'un répertoire
+----------------------------------------------------
+
+8. 
+
+ls -l | sort -r -h | grep 'R1.01.*'
+
+9.
+
+Le fichier .7z (11,7kB)
+
+10. 
+
+191,4kB
+
+11.
+
+191,4/11,7 = 16,36 (taux de compression)
+
+3.2 Retauration d'un répertoire à partir d'une archive
+-------------------------------------------------------
+
+3.
+
+Dans désachirvage (répertoire courant)
+
+4.
+
+barbiehu@pc-dg-035-12:~/désachirvage$ diff -r R1.01 ~/R1.01
+barbiehu@pc-dg-035-12:~/désachirvage$ 
+
+5. 6. 7. 8. 9. 10.
+
+FAIT
+
+3.3 Vérification de l'intégrité d'une archive
+----------------------------------------------
+
+1. 2. 3. 4. 5. 6.
+
+barbiehu@pc-dg-035-12:~$ zip -T R1.01.zip
+test of R1.01.zip OK
+barbiehu@pc-dg-035-12:~$ gzip -t R1.01.tar.gz
+barbiehu@pc-dg-035-12:~$ bzip2 -t R1.01.tar.bz2
+barbiehu@pc-dg-035-12:~$ xz -t R1.01.tar.xz
+barbiehu@pc-dg-035-12:~$ zstd -t R1.01.tar.zst
+R1.01.tar.zst       : 122880 bytes                                             
+barbiehu@pc-dg-035-12:~$ 7z t R1.01.7z
+
+7-Zip [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=fr_FR.UTF-8,Utf16=on,HugeFiles=on,64 bits,6 CPUs Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz (906EA),ASM,AES-NI)
+
+Scanning the drive for archives:
+1 file, 11735 bytes (12 KiB)
+
+Testing archive: R1.01.7z
+--
+Path = R1.01.7z
+Type = 7z
+Physical Size = 11735
+Headers Size = 1353
+Method = LZMA2:16
+Solid = +
+Blocks = 1
+
+Everything is Ok
+
+Folders: 33
+Files: 56
+Size:       60348
+Compressed: 11735
+
+7.
+
+barbiehu@pc-dg-035-12:~$ okteta R1.01.7z
+register count: 0, destroy count: 0
+barbiehu@pc-dg-035-12:~$ okteta R1.01.tar.gz
+register count: 0, destroy count: 0
+barbiehu@pc-dg-035-12:~$ okteta R1.01.tar.bz2
+register count: 0, destroy count: 0
+barbiehu@pc-dg-035-12:~$ okteta R1.01.tar.xz
+register count: 0, destroy count: 0
+barbiehu@pc-dg-035-12:~$ okteta R1.01.tar.zst
+register count: 0, destroy count: 0
+barbiehu@pc-dg-035-12:~$ okteta R1.01.tar.zip
+register count: 0, destroy count: 0
+
+8.
+
+barbiehu@pc-dg-035-12:~$ gzip -t R1.01.tar.gz
+
+gzip: R1.01.tar.gz: invalid compressed data--crc error
+
+gzip: R1.01.tar.gz: invalid compressed data--length error
+barbiehu@pc-dg-035-12:~$ bzip2 -t R1.01.tar.bz2
+bzip2: R1.01.tar.bz2: data integrity (CRC) error in data
+
+You can use the `bzip2recover' program to attempt to recover
+data from undamaged sections of corrupted files.
+
+barbiehu@pc-dg-035-12:~$ xz -t R1.01.tar.xz
+xz: R1.01.tar.xz: Compressed data is corrupt
+barbiehu@pc-dg-035-12:~$ zstd -t R1.01.tar.zst
+R1.01.tar.zst : Decoding error (36) : Restored data doesn't match checksum 
+barbiehu@pc-dg-035-12:~$ 7z t R1.01.7z
+
+7-Zip [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=fr_FR.UTF-8,Utf16=on,HugeFiles=on,64 bits,6 CPUs Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz (906EA),ASM,AES-NI)
+
+Scanning the drive for archives:
+1 file, 11735 bytes (12 KiB)
+
+Testing archive: R1.01.7z
+--
+Path = R1.01.7z
+Type = 7z
+Physical Size = 11735
+Headers Size = 1353
+Method = LZMA2:16
+Solid = +
+Blocks = 1
+
+ERROR: Data Error : R1.01/TP3A/src/Utilitaire.java
+ERROR: Data Error : R1.01/TP3B/.gitignore
+ERROR: Data Error : R1.01/TP3B/.idea/.gitignore
+ERROR: Data Error : R1.01/TP3B/.idea/inspectionProfiles/Project_Default.xml
+ERROR: Data Error : R1.01/TP3B/.idea/misc.xml
+ERROR: Data Error : R1.01/TP3B/.idea/modules.xml
+ERROR: Data Error : R1.01/TP3B/.idea/workspace.xml
+ERROR: Data Error : R1.01/TP3B/TP3B.iml
+ERROR: Data Error : R1.01/TP3B/src/Compare_Strings.java
+ERROR: Data Error : R1.01/TP3B/src/Explore_Strings.java
+                                             
+Sub items Errors: 10
+
+Archives with Errors: 1
+
+Sub items Errors: 10
+barbiehu@pc-dg-035-12:~$ zip -T R1.01.zip
+  error:  invalid compressed data to inflate R1.01/TP3B/.idea/workspace.xml
+test of R1.01.zip FAILED
+
+zip error: Zip file invalid, could not spawn unzip, or wrong unzip (original files unmodified)
+
+
+

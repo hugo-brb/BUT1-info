@@ -1,0 +1,53 @@
+00000000                                     1    		ORG	$0
+00000000  00008000                           2  		DC.L	$8000	; adresse de la pile
+00000004  00000AC0                           3  		DC.L	Inst1	; pour initialisation PC (Compteur Ordinal)
+00000008                                     4  
+00000008                                     5  * declaration des "variables" du programme
+00000008                                     6  * on reserve et on initialise avec la directive DC 
+00000008                                     7  * on reserve sans initialiser avec la directive DS
+00000A00                                     8  		ORG	$A00
+00000A00                                     9  a		DS.W 1
+00000A02                                    10  b		DS.W 1
+00000A04  00000001                          11  cas1		DC.L 1
+00000A08  00000001                          12  cas2		DC.L 1
+00000A0C                                    13  
+00000A0C                                    14  * debut des instructions du programme
+00000A0C                                    15  
+00000AC0                                    16  		ORG	$AC0
+00000AC0  31FC 0001 0A00                    17  Inst1		MOVE.W 	#1,a
+00000AC6  31FC 000A 0A02                    18  		MOVE.W 	#10,b
+00000ACC  21FC 696E6974 0A04                19  		MOVE.L	#'init',cas1
+00000AD4  21FC 696E6974 0A08                20  		MOVE.L	#'init',cas2
+00000ADC                                    21  
+00000ADC                                    22  *  a vous d'ecrire la suite en assembleur...
+00000ADC                                    23  *ET
+00000ADC  3038 0A02                         24  		MOVE.W 	b,D0
+00000AE0  B078 0A00                         25  si1		CMP.W	a,D0			; a ? b
+00000AE4  6300 0018                         26  		BLS	sinon1			; si a <= b aller à sinon1
+00000AE8  0C78 0004 0A00                    27  et1		CMPI.W	#4,a			; a ? 4 
+00000AEE  6400 000E                         28  		BCC	sinon1			; si a >= 4 aller à sinon1
+00000AF2  21FC 616C6F31 0A04                29  alors1		MOVE.L	#'alo1',cas1	
+00000AFA  6000 000A                         30  		BRA	finsi1			; sauter le sinon1
+00000AFE  21FC 73696E31 0A04                31  sinon1		MOVE.L	#'sin1',cas1
+00000B06                                    32  finsi1
+00000B06                                    33  
+00000B06                                    34  *OU
+00000B06  B078 0A00                         35  si2		CMP.W	a,D0			; a ? b
+00000B0A  6200 000C                         36  		BHI	alors2			; si a > b aller à alors2
+00000B0E  0C78 0004 0A00                    37  ou2		CMPI.W	#4,a			; a ? 4
+00000B14  6400 000E                         38  		BCC	sinon2			; si a >= 4 aller à sinon2
+00000B18  21FC 616C6F32 0A08                39  alors2		MOVE.L	#'alo2',cas2
+00000B20  6000 000A                         40  		BRA	finsi2			; sauter le sinon2
+00000B24  21FC 73696E32 0A08                41  sinon2		MOVE.L	#'sin2',cas2
+00000B2C                                    42  finsi2
+00000B2C                                    43  
+00000B2C                                    44  
+00000B2C                                    45  
+00000B2C                                    46  * fin du programme principal
+00000B2C  4848                              47  		BREAK	
+00000B2E                                    48  
+00000B2E                                    49  * fin du contenu a assembler
+00000B2E                                    50  		END
+
+No errors detected
+No warnings generated

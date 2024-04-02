@@ -1,0 +1,154 @@
+*******************************************************************************************************
+BARBIERI Hugo - R1.03 
+TP2 : Codage des nombres et arithmétique
+*******************************************************************************************************
+
+2 - Utilisation des registres du 68000
+=======================================================================================================
+
+Question simple
+---------------
+SR = codé sur 16bits
+
+
+Question simple
+---------------
+SR 	| N | Z | V | C
+$2700	| 0 | 0 | 0 | 0
+$2708	| 1 | 0 | 0 | 0
+$270A	| 1 | 0 | 1 | 0
+
+
+3. Arithmétique avec le processeur 68000
+=======================================================================================================
+
+Question préliminaire
+----------------------
+Le codage utilisé est le complément à deux.
+
+CAS 1 :
+-------- 
+MOVE.B #$7F,D0 ==> MOVE: D0.B:= #$7F(.B)
+Valeur finale : D0.B = #$7F
+			N = 0 
+			Z = 0
+			V = 0
+			C = 0
+<%0111 1111>deux = <127>dix
+<%0111 1111>cpt2 = <127>dix
+			
+			
+CAS 2 :
+--------
+MOVE.B #$FF, D1 ==> MOVE: D1.B:= #$FF(.B)
+Valeur finale : D1.B = #$FF
+			N = 1 
+			Z = 0
+			V = 0
+			C = 0
+<%1111 1111>deux = <255>dix
+<%1111 1111>cpt2 = -<%0000 0001>deux = <-1>dix
+
+CAS 3 :
+--------
+MOVE.B #$FC, D1 ==> MOVE: D1.B:= #$FC(.B)
+ADD.B #$07, D1 ==> ADD: D1.B:= D1.B + #$07
+Valeur finale : D1.B = #$03
+			N = 0 
+			Z = 0
+			V = 0
+			C = 1
+<%0000 0011>deux = <3>dix
+<%0000 0011>cpt2 = <3>dix
+
+CAS 4 :
+--------
+MOVE.B NBF, D0 ==> MOVE: D0.B:= #$2E(.B)
+ADD.B NBG, D0 ==> ADD: D0.B:= D0.B + #$17
+Valeur finale : D0.B = $45
+			N = 0 
+			Z = 0
+			V = 0
+			C = 0
+<%0100 0101>cpt2 = <>dix
+
+
+CAS 5 :
+--------
+MOVE.B NBF, D0 ==> MOVE: D0.B:= #$2E(.B)
+SUB.B NBG, D0 ==> SUB: D0.B:= D0.B - #$17
+Valeur finale : D0.B = $17
+			N = 0
+			Z = 0
+			V = 0
+			C = 0
+<%0001 0111>cpt2 = <23>dix
+
+CAS 6 :
+--------
+MOVE.W #$00FC,D2 ==> MOVE: D2.W:= #$00FC(.W)
+ADD.W #4, D2 ==> ADD: D2.W:= D2.W + #$0004
+Valeur finale : D2.W = $0100
+			N = 0
+			Z = 0
+			V = 0
+			C = 0
+<%0000 0001 0000 0000>cpt2 = <256>dix12		
+
+CAS 7 :
+--------
+MOVE.B #$CF, D3 ==> MOVE: D3.B:= #$CF(.B)
+SUB.B $B8, D3 ==> SUB: D3.B:= D3.B = #$B8
+Valeur finale : D3.B = $17
+			N = 0
+			Z = 0
+			V = 0
+			C = 0
+<%0001 0111>deux = <23>dix
+
+CAS 8 :
+--------
+MOVE.B #$8F, D4 ==> MOVE: D4.B:= #$8F(.B)
+SUB.B $12, D4 ==> SUB: D4.B:= D4.B - #$12
+Valeur finale : D3.B = $7D
+			N = 0
+			Z = 0
+			V = 0
+			C = 0
+<%0111 1101>deux = <125>dix
+
+CAS 9 :
+-------
+MOVE: D5.B:= #$63(.B)
+ADD: D5.B:= D5.B + $30
+Valeur finale : D5.B = $93
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		

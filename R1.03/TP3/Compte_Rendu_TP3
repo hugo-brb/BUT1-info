@@ -1,0 +1,38 @@
+*******************************************************************************************************
+BARBIERI Hugo - R1.03 
+TP3 : Codage-décodage des instructions
+*******************************************************************************************************
+
+
+1 - Programme en assembleur 68000, assemblage, exécution
+=======================================================================================================
+
+1.2.
+-----
+ - PrixBonbon = MC[$12].B --> adresse $A00
+ - MOVE.B PrixBonbon,D1
+ 	--> D1.B = PrixBonbon
+ 	--> <%0001 0010 0011 1000 0000 1010 0000 0000>68000
+ 	    <$12380A00>68000
+ 	    
+
+3 - Branchements « simples » et sans utiliser l’instruction CMP (ni CMPI)
+=======================================================================================================
+	* Variables */
+	Solde : entier ;
+	
+	/* si .. alors .. sinon */
+	Solde := xx 				; vous testerez avec différentes valeurs (<0 ; >0 ; =0)
+						; cette affectation met à jour N, Z, V, C
+	si solde >= 0 				; aller à sinon pour Solde < 0
+	alors {
+		si solde > 0 			; aller à sinon pour Solde = 0
+		alors D0.W := $AAAA 		; Cas Solde>0
+						; affectation de D0.W à une valeur immédiate
+		sinon D0.W := $CCCC 		; Cas Solde=0
+		finsi
+		D1.W := $1111
+		}
+	sinon D0.W := $FFFF 			; Cas Solde<0
+	finsi
+	D2.W := $2222

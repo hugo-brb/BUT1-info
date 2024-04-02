@@ -1,0 +1,57 @@
+/* À compléter */
+body{
+    font-family: Verdana, Tahoma, sans-serif;
+    font-variant-caps: small-caps;
+    width: 100%;
+    margin: 0;
+}
+
+nav{
+    width: 100%;
+}
+
+nav ul{
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+    width: 100%;
+    display: block;
+}
+nav ul li{
+    list-style-type: none;
+    background-color: silver;
+    padding: 1em 2em;
+    text-align: center;
+    width: 100%;
+    display: block;
+    
+}
+
+nav ul li ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 1em;
+}
+nav ul li ul li{
+    padding: 0;
+}
+
+
+
+nav ul li:hover ul{
+    display: block;
+}
+nav ul li:first-child:hover, nav ul li:last-child:hover{
+    background-color: black;
+    color: white;
+}
+
+nav ul li ul{
+    display: none;
+}

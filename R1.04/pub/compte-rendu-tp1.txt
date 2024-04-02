@@ -1,0 +1,29 @@
+***********************************************
+GALLES Perceval - TP1 : Prise en main du shell
+***********************************************
+
+2. Introduction : shell et système de fichiers
+==============================================
+
+Noter ici les choses dont vous aurez du mal à vous souvenir.
+
+3. Utilisation de la ligne de commande
+======================================
+
+3.1 Lancer un shell
+-------------------
+
+1.
+
+perceval@pc-dg-033-09:~$ pwd
+/users/info/etu-1a/perceval
+
+2. 
+
+Le chemin affiché est celui de mon dossier personnel (ou homedir)
+
+3.
+
+Il s'agit du même chemin que celui affiché par Dolphin.
+
+[...]

@@ -1,0 +1,81 @@
+body{
+    font-family: Calibri, Arial, sans-serif;
+    color: white;
+    background-color: #343752;
+    font-weight: bold;
+}
+
+h1{
+    font-size: 2em;
+    margin-bottom: 5vh;
+}
+
+main{ 
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+article{
+    width: 310px;
+    height: 150px;
+}
+
+aside{
+    float: right;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#game, #music{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2, p{
+    margin: 0;
+    padding: 0;
+    margin-left: 3%;
+}
+
+h2{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+p{
+    font-size: 0.8em;
+    
+}
+
+#email{
+    background-color: #37B6B7;
+}
+
+#finance{
+    background-color: #683FB7;
+}
+
+#calendar, #game{
+    background-color: #B71C54;
+}
+
+#weather{
+    background-color: #4C98E7;
+}
+
+#music{
+    background-color: #DA542D;
+}
+
+
+.p1{
+    margin-top: 10%;
+}

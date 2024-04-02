@@ -1,0 +1,74 @@
+*******************************************************************************************************
+BARBIERI Hugo - R1.03 
+TP1 : Simulateur 68000 : codage des données et exécution d’un programme
+*******************************************************************************************************
+
+2 - Consultation de la mémoire centrale
+=======================================================================================================
+
+	a - Compréhension de la fenêtre Memory Viewer
+       ------------------------------------------------------------------------------------------------
+
+=> La notation utilisée est l'hexadécimal, 16 octets sont visible sur une ligne.
+=> La premiere colonne est noté x0 et la dernière colonne xf 
+notation sous la forme ab avec : 
+	- a représentant les lignes
+	- b représentant les colonnes
+=> 000040 ; 00004d
+=> $000503 = %1110 0110
+$000506 = %0100 0011
+$000563 = %0011 1100
+$000002 = %1000 0000
+
+	b - Interprétation du contenu de la mémoire avec la fenêtre Program Listing
+       ------------------------------------------------------------------------------------------------
+
+1.
+Déclaration : $500 --> $549 (ou $534)
+Initialisation $550 --> $572
+
+2.
+DBIN : MC[$500].W = %0000000100010101 ($0115)
+EHEX : MC[$502].W = $00E6
+
+3.
+$000520 : ADEC : <26>dix : <%00011010>deux : <$1A>deux
+$000521 : BDEC : <35>dix : <%00100011>deux : <$23>deux
+HEXADECIMAL
+
+4.
+$522 : CDEC : <°>dix : <%0000000110111010>deux : <$01BA>deux
+ASCII
+
+5.
+FCAR : <$63 34 43 29> 
+CH1 : <$42>
+HEXADECIMAL
+
+3 -  Exécution du programme
+=======================================================================================================
+
+1.
+$521 : <$1a>
+
+2.
+La prochaine instruction sera MOVE.W #$7572, CDEC
+	Elle modifiera l'étiquette CDEC en y placant la valeur $7572.
+==> MC[$522].W = $7572
+
+3.
+La 3ième instruction place la valeur $1234abcd dans le registre D3.
+La 4ième instruction va écraser la valeur (1 octets de poid faible) du registre D3 pour y mettre maintenant la valeur : %01100100 ($64)
+==> D3 = $123ab64
+
+4.
+La 5ième instruction va mettre la valeur de BDEC dans CH1
+==> MC[$524].B = $1a
+
+5.
+La 6ième instruction va mettre dans 2octets de ADEC la valeur $4152
+==> MC[$520].W = $4152
+
+QUESTION COMPLEMENTAIRE
+------------------------
+-> 2²⁴ adresses	possibles (16⁶) 

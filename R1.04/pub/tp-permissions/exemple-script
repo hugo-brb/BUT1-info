@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "Bonjour,"
+echo "Je suis le script $0"
+echo -n "Mon propriétaire est : "
+stat -c '%U' "$0"
+echo "Je suis exécuté par : $USER"
+echo "Le paramètre qui m'a été transmis est : $1"

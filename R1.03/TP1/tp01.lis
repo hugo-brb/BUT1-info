@@ -1,0 +1,32 @@
+00000000                                     1            ORG	$0
+00000000  00008000                           2            DC.L	$8000	
+00000004  00000550                           3            DC.L	DEBUT
+00000008                                     4  
+00000008                                     5  * declaration des "données" du programme
+00000500                                     6            ORG	$500	
+00000500  0115                               7  DBIN	  DC.W	%0000000100010101
+00000502  00E6                               8  EHEX	  DC.W	$00E6
+00000504  63344329                           9  FCAR	  DC.L	$63344329
+00000508  17                                10  G23	  DC.B  $17
+00000509                                    11  
+00000509                                    12  
+00000520                                    13            ORG	$520
+00000520  1A                                14  ADEC	  DC.B	26	
+00000521  23                                15  BDEC	  DC.B	35
+00000522  01BA                              16  CDEC	  DC.W	442
+00000524  42 4F 4E 4A 4F 55 52 27 62 ...    17  CH1	  DC.B	'BONJOUR''bonjour',0
+00000534                                    18  
+00000534                                    19  *instructions du programme
+00000550                                    20        	  ORG	   $550	
+00000550  11F8 0520 0521                    21  DEBUT	  MOVE.B   ADEC,BDEC 
+00000556  31FC 7572 0522                    22            MOVE.W   #$7572,CDEC
+0000055C  263C 1234ABCD                     23  	  MOVE.L   #$1234ABCD,D3
+00000562  163C 0064                         24  	  MOVE.B   #%01100100,D3
+00000566  11F8 0521 0524                    25  	  MOVE.B   BDEC,CH1
+0000056C  31FC 4152 0520                    26  	  MOVE.W   #$4152,ADEC
+00000572  4848                              27  	  BREAK	   ;fin du programme 
+00000574                                    28  * fin de la partie a assembler
+00000574                                    29            END  *fin du contenu a assembler
+
+No errors detected
+No warnings generated

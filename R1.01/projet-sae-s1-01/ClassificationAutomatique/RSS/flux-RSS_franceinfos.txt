@@ -1,0 +1,176 @@
+.N 001
+.D 170124
+.C ENVIRONNEMENT-SCIENCES
+.T Neige, verglas, pluies verglaçantes : ce qui vous attend avec l'arrivée de la dépression Irène. Des pluies verglaçantes et de la neige sont attendues à partir de mardi soir et jusqu'à jeudi dans la moitié nord de l'Hexagone, où 36 départements au total seront en vigilance orange neige-verglas ou  pluie-inondation.
+
+.N 002
+.D 170124
+.C POLITIQUE
+.T Homophobie, anti-IVG, menaces… Un rapport de l’Éducation nationale épingle l’école Stanislas, où sont scolarisés les enfants d'Amélie Oudéa-Castéra. Selon le rapport de l'Inspection générale, le groupe privé ne respecte pas son contrat avec l'État et flirte avec l'intégrisme catholique.
+     
+.N 003
+.D 170124
+.C ENVIRONNEMENT-SCIENCES
+.T Prise en charge des AVC : l'intérieur d'un vaisseau sanguin du cerveau filmé pour la première fois à l'aide d'une caméra. Grâce à une caméra fixée sur une fibre optique, un neuroradiologue français a réussi à filmer l'intérieur des vaisseaux sanguins du cerveau d'un patient victime d'accidents vasculaires cérébraux à répétition. Cette première mondiale a eu lieu en novembre 2023 à l'hôpital d'Ottawa, au Canada.
+      
+.N 004
+.D 170124
+.C POLITIQUE
+.T DIRECT. Guerre entre Israël et le Hamas : les frappes sur le sud de Gaza se multiplient
+Selon Israël, des dirigeants locaux du mouvement islamiste se cachent près de l'hôpital Nasser de Khan Younès, principale ville du sud de Gaza.
+      
+.N 005
+.D 170124
+.C CULTURE
+.T On vous raconte l'histoire des faux espions de Renault, alors que s'ouvre le procès de leurs accusateurs
+En 2011, trois cadres du groupe avaient été accusés de recevoir des  pots-de-vin  en échange d'informations confidentielles fournies à la Chine. Licenciés sans ménagement, ils avaient finalement été blanchis.
+      
+.N 006
+.D 170124
+.C SPORTS
+.T Open d'Australie 2024 : Jannik Sinner expéditif, Diane Parry assure, Ons Jabeur au tapis Ce qu'il faut retenir des matchs de la nuit
+La Tunisienne Ons Jabeur, tête de série numéro 6, a été sèchement éliminée au 2e tour ce mercredi à Melbourne. La Française Diane Parry, elle, poursuit sa route.
+      
+.N 007
+.D 170124
+.C CULTURE
+.T GRAND ENTRETIEN.  Le sang qui coule dans nos veines est mêlé à l'encre d'Astérix  : les confidences des filles d'Uderzo et Goscinny pour les 65 ans du héros
+Il y a 65 ans exactement quand, en janvier 1959, un héros aux moustaches blondes et au casque ailé voyait le jour dans le magazine  Pilote . A cette occasion, Anne Goscinny et Sylvie Uderzo sont revenues sur la folle histoire d'Astérix pour franceinfo.
+      
+.N 008
+.D 170124
+.C POLITIQUE
+.T Guerre entre Israël et le Hamas : un hommage aux victimes françaises des attaques du 7 octobre sera rendu le 7 février, annonce Emmanuel Macron
+ Je rendrai hommage à ces victimes aux côtés de leurs proches, de leurs familles et de tous ceux qui voudront nous y rejoindre , a déclaré le président français.
+      
+.N 009
+.D 170124
+.C ENVIRONNEMENT-SCIENCES
+.T Conférence de presse d'Emmanuel Macron : le président défend le doublement des franchises médicales à un euro
+Emmanuel Macron a précisé qu'il faudrait continuer de protéger les personnes touchées par des affections de longue durée, avec le plafond de  50 euros par an .
+      
+.N 010
+.D 170124
+.C POLITIQUE
+.T Emmanuel Macron annonce la transformation du congé parental en  congé de naissance ,  mieux rémunéré  et  plus court 
+Ce congé  permettra aux deux parents d'être auprès de leur enfant pendant six mois s'ils le souhaitent , a précisé le chef de l'Etat lors de sa conférence de presse.
+      
+.N 011
+.D 170124
+.C SPORTS
+.T Euro de hand : la France s'impose face à l'Allemagne et termine première de son groupe
+Les Tricolores ont réussi à s'imposer face à l'Allemagne, pays hôte de la compétition, lors du dernier match du tour préliminaire, mardi, au terme d'un match à haute intensité (33-30).
+      
+.N 012
+.D 170124
+.C POLITIQUE
+.T Médecins du Monde s'alarme d'une  dégradation nette  de la situation des sans-abri en France
+Un homme de 50 ans, à la rue depuis une vingtaine d'années, est mort le 2 janvier à l'hôpital à Paris. Un autre homme, âgé de 60 ans et depuis 10 ans à la rue, est mort le 9 janvier dans la capitale.
+      
+.N 013
+.D 170124
+.C ECONOMIE
+.T Emmanuel Macron se rendra en février en Ukraine, de nouvelles livraisons d'armes annoncées
+Emmanuel Macron a également précisé que la France était  en train de finaliser un accord  de sécurité avec Kiev, du type de celui conclu vendredi entre le Royaume-uni et l'Ukraine sur une période de dix ans.
+      
+.N 014
+.D 170124
+.C CULTURE
+.T INFO FRANCEINFO. Visé par des accusations de viols, Sébastien Cauet saisit le tribunal de commerce pour un retour immédiat à l'antenne sur NRJ
+Une première audience portant sur la procédure se tiendra le 29 janvier au tribunal de commerce de Paris.
+      
+.N 015
+.D 170124
+.C POLITIQUE
+.T VIDEO. Emmanuel Macron assure ne pas avoir parlé avec Rachida Dati des municipales à Paris avant son entrée au gouvernement
+L'ancienne garde des Sceaux de Nicolas Sarkozy, qui a rejoint le camp présidentiel et le ministère de la Culture, ne cache pas son ambition de devenir maire de la capitale en 2026.
+      
+.N 016
+.D 170124
+.C ENVIRONNEMENT-SCIENCES
+.T Cyclone Belal à La Réunion : le bilan s'élève désormais à trois morts, annonce Gérald Darmanin
+Les deux habitants supplémentaires ayant péri lors du passage du cyclone seraient des  sans domicile fixe qui auraient refusé l'hébergement d'urgence , selon le ministre de l'Intérieur.
+      
+.N 017
+.D 170124
+.C CULTURE
+.T Que se passe-t-il entre l'Iran et l'Irak après les frappes qui ont touché la ville kurde d'Erbil ?
+La diplomatie iranienne a présenté ces tirs de missile comme  une opération ciblée  en représailles à la mort d'un général et de plusieurs commandants alliés de Téhéran. Bagdad affirme que le domicile d'un civil était visé.
+      
+.N 018
+.D 170124
+.C SPORTS
+.T AN 2024 : l'exploit de la Namibie, le Mali et le Burkina Faso au rendez-vous Ce qu'il faut retenir des matchs de mardi
+Pour sa troisième participation à la CAN, la Namibie a décroché sa première victoire dans la compétition, en surprenant la Tunisie, mardi.
+      
+.N 019
+.D 170124
+.C SPORTS
+.T Karim Benzema a porté plainte contre Gérald Darmanin, qui l'accuse de  lien notoire  avec les Frères musulmans
+La plainte a été déposée pour diffamation auprès de la Cour de justice de la République, la seule juridiction habilitée à juger des membres du gouvernement.
+      
+.N 020
+.D 170124
+.C CULTURE
+.T TÉMOIGNAGES.  Ce n'est pas forcément un échec  : ces femmes qui ne veulent pas d'enfant expliquent leur choix et leurs hésitations
+Alors que la natalité continue de baisser dans notre pays, nous avons interrogé des Françaises qui préfèrent ne pas fonder de famille. Elles évoquent raisons personnelles et convictions politiques.
+     
+.N 021
+.D 170124
+.C ECONOMIE
+.T Immigration : le nombre d'entrées irrégulières dans l'UE en 2023 à un niveau record depuis 2016
+Les entrées irrégulières dans l'Union européenne ont augmenté de 17% en 2023 par rapport à l'année précédente, selon l'agence de surveillance des frontières Frontex.
+      
+.N 022
+.D 170124
+.C SPORTS
+.T REPORTAGE.  On a découvert l'inimaginable  : des athlètes français à Auschwitz-Birkenau pour sensibiliser le milieu sportif à l'antisémitisme
+Une trentaine de sportifs a été reçue dans le camp de concentration et d'extermination polonais, dimanche, à l'initiative du CRIF. Un voyage marqué par l'absence de certains athlètes.
+      
+.N 023
+.D 170124
+.C SPORTS
+.T Rugby : Bastien Chalureau condamné en appel pour des violences contre deux hommes, le caractère raciste non retenu
+ Bastien Chalureau n'est pas fier des violences qu'il a commises, mais ce n'est pas un raciste , a réagi son avocat, en l'absence du joueur.
+      
+.N 024
+.D 170124
+.C POLITIQUE
+.T Instruction civique,  tenue unique , usage des écrans : Emmanuel Macron annonce des mesures pour l'Education nationale en 2024
+Face à la presse mardi, le chef de l'Etat a fait de l'école, du collège et du lycée le premier sujet de son discours introductif, confirmant que l'exécutif fait de ce sujet une priorité.
+      
+.N 025
+.D 170124
+.C POLITIQUE
+.T VIDEO. Emmanuel Macron n'a  aucun regret  d'avoir défendu la  présomption d'innocence  de Gérard Depardieu
+ Si j'ai un regret, c'est de ne pas avoir assez dit combien la parole des femmes qui sont victimes de ces violences est importante , a néanmoins reconnu le chef de l'Etat lors de sa conférence de presse à l'Elysée.
+      
+.N 026
+.D 170124
+.C CULTURE
+.T Démographie : 678 000 bébés nés en 2023, le chiffre le plus bas depuis la Seconde Guerre mondiale, selon l'Insee
+Le dernier bilan démographique de l'Insee, que franceinfo a pu consulter mardi, recense 68,4 millions d'habitants en France au 1er janvier.
+      
+.N 027
+.D 170124
+.C POLITIQUE
+.T Présidentielle américaine : ce qu'il faut retenir de la victoire  écrasante  de Donald Trump dans l'Iowa lors de la primaire républicaine
+Selon des résultats quasi définitifs, l'ex-président américain a récolté 51% des suffrages dans cet Etat du Midwest, balayant Ron DeSantis et Nikki Haley, ses deux principaux concurrents.
+      
+.N 028
+.D 170124
+.C CULTURE
+.T Affaire Théo :  Ma famille va continuer à avoir un mort-vivant , témoigne le jeune homme au procès des trois policiers
+Théo Luhaka, 29 ans, qui garde des séquelles à vie, a livré sa version des faits et son vécu, lundi, devant la cour d'assises de la Seine-Saint-Denis.
+     
+.N 029
+.D 170124
+.C CULTURE
+.T Meurtre d'Aurélie Vaquier : son compagnon Samire Lymani condamné à 30 ans de réclusion criminelle
+Au terme de 8 jours de procès au cours duquel l'accusé a continué à nier son implication, la cour d'assises de l'Hérault a rendu son verdict. Elle condamne Samire Lymani à trente ans de réclusion, le reconnaissant ainsi coupable du meurtre de sa compagne Aurélie Vaquier, commis en 2021 à Bédarieux.
+      
+.N 031
+.D 170124
+.C SPORTS
+.T Plusieurs dirigeants du sport français visés par des enquêtes pour faux témoignages devant l'Assemblée nationale
+A la suite de signalements pour parjure adressés par des députés, le parquet de Paris a ouvert, mercredi, des enquêtes visant notamment le président de la Fédération française de tennis, Gilles Moretton.

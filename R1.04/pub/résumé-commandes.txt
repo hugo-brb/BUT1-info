@@ -1,0 +1,43 @@
+Ce fichier est à compléter avec toutes les commandes que vous verrez pendant les TP.
+Il est possible de s'inspirer des descriptions des commandes fournies dans les pages de manuel,
+que ce soit en anglais (man COMMANDE) ou en français (man-fr COMMANDE).
+Il est aussi conseillé de noter les options les plus importantes et de noter un exemple d'utilisation de chaque commande.
+
+Nom de la	Description de ce que fait la commande
+Commande
+
+cd		Change Directory
+		Change le répertoire courant
+		cd R1.04/tp1
+
+ls		list directory contents
+		Afficher le contenu de répertoires
+		ls R1.04
+
+ls -l		Affichage détaillé d'un fichier ou d'un répertoire
+		ls -l R1.04
+		ls -l toto.txt
+
+cat 		
+
+less
+
+mkdir
+
+cp
+
+cp -r
+
+mv
+
+rm
+
+rm -r
+
+java
+
+javac
+
+./toto		Exécution d'un programme dans le répertoire courant
+
+...		...

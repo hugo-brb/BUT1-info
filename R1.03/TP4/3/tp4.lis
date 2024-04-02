@@ -1,0 +1,40 @@
+00000000                                     1    		ORG	$0
+00000000  00008000                           2  		DC.L	$8000	; adresse de la pile
+00000004  00000AC0                           3  		DC.L	Inst1	; pour initialisation PC (Compteur Ordinal)
+00000008                                     4  
+00000008                                     5  * declaration des "variables" du programme
+00000008                                     6  * on reserve et on initialise avec la directive DC 
+00000008                                     7  * on reserve sans initialiser avec la directive DS
+00000A00                                     8  		ORG	$A00
+00000A00                                     9  a		DS.W 1
+00000A02                                    10  b		DS.W 1
+00000A04                                    11  
+00000A04                                    12  
+00000A04                                    13  * debut des instructions du programme
+00000A04                                    14  
+00000AC0                                    15  		ORG	$AC0
+00000AC0  31FC 015C 0A00                    16  Inst1		MOVE.W 	#348,a    	
+00000AC6  31FC 08B1 0A02                    17  		MOVE.W 	#2225,b   	
+00000ACC                                    18  
+00000ACC                                    19  *  a vous d'ecrire la suite en assembleur...
+00000ACC  3238 0A00                         20  		MOVE.W	a,D1
+00000AD0  3438 0A02                         21  		MOVE.W	b,D2
+00000AD4  B242                              22  tq		CMP.W	D2,D1
+00000AD6  6700 0012                         23  		BEQ	fin
+00000ADA                                    24  faire
+00000ADA  B242                              25  si		CMP.W	D2,D1
+00000ADC  6300 0008                         26  		BLS	sinon	
+00000AE0  9242                              27  alors		SUB.W	D2,D1
+00000AE2  6000 0004                         28  		BRA	finsi
+00000AE6  9441                              29  sinon		SUB.W	D1,D2
+00000AE8  60EA                              30  finsi		BRA	tq
+00000AEA  3001                              31  fin		MOVE.W	D1,D0
+00000AEC                                    32  
+00000AEC                                    33  * fin du programme principal
+00000AEC  4848                              34  		BREAK	
+00000AEE                                    35  
+00000AEE                                    36  * fin du contenu a assembler
+00000AEE                                    37  		END
+
+No errors detected
+No warnings generated

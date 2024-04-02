@@ -1,0 +1,391 @@
+---
+title: "Rendu du TP Méthodes Numériques"
+author: "Loan NICOLAS-DEMBA & Hugo BARBIERI - C1"
+date: ''
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Approximation de $\sqrt{2}$
+
+## Construction des deux suites
+
+On part du rectangle de largeur $1$ et de longueur $2$, qui a donc une aire égale à $2$. Pour l'étape suivante, on souhaite raccourcir la longueur de ce rectangle. Pour cela, on prend comme nouvelle longueur, la moyenne de la longueur et de la largeur. On en déduit la nouvelle largeur, afin de préserver la surface de ce nouveau rectangle égale à $2$, et ainsi de suite.
+
+On notera $(u_n)_{n\in\mathbb N}$ la longueur du rectangle à l'étape $n$ (on commence à $n=0$) et $(v_n)_{n\in\mathbb N}$ la largeur du rectangle à l'étape $n$ de telle façon que la surface soit égale à $2$ :
+$$
+\forall n\in \mathbb N,\, v_n= \frac2u_n
+$$
+## Signe de $u_{n+1}-\sqrt{2}$
+
+$$
+\begin{eqnarray*}
+u_{n+1}-\sqrt{2} & = & \frac{u_n + v_n}2 - \sqrt{2}  \\\\ 
+                & = & \frac{u_n + \frac2u_n}2 - \sqrt{2}    \\\\
+                & = & \frac{u_n^2+2-(2u_n*\sqrt{2})}{2u_n} \\\\
+               0 & \leq & \frac{(u_n-\sqrt{2})^2}{2u_n}
+\end{eqnarray*}
+$$
+Car $u_n$ est une longueur elle est donc forcément supérieur à 0. 
+Et $(u_n-\sqrt{2})^2$ supérieur à 0.
+
+## Calcul de $u_{n+1}-u_n$
+
+$$
+\begin{eqnarray*}
+u_{n+1}-u_n & = & \frac{u_n+v_n}{2}-u_n \\\\
+            & = & \frac{-u_n^2+2}{2u_n}
+\end{eqnarray*}
+$$
+On sait que $u_n > \sqrt{2}$
+Donc $u_n^2 > 2$
+Soit $0 > -u_n^2+2$
+Ce qui nous donne $\frac{-u_n^2+2}{2u_n} < 0$
+
+La suite $u_n$ est donc une suite décroissante, convergente.
+
+## Étudier la fonction $f$
+
+La fonction $f$, définie sur $[1,2]$ est $f(x)=\frac12(x+\frac{2}{x})$
+
+Il faudra calculer  
+$$
+\begin{eqnarray*}
+                                      l & = & f(l)                                                        \\\\
+                            f(\sqrt{2}) & = & \frac{1}{2} (\sqrt{2} + \frac{2}{\sqrt{2}})                    \\\\
+                            f(\sqrt{2}) & = & \sqrt{2}                                                      \\\\
+\lim\limits_{n \rightarrow +\infty} u_n & = & \sqrt{2}
+\end{eqnarray*}
+$$
+ainsi que 
+ 
+$$
+\begin{eqnarray*}
+l & = & f(l)\\\\
+f(x) & = & \frac2x\\\\
+Donc \ f(\sqrt{2}) & = & \frac2{\sqrt{2}}\\\\
+f(\sqrt{2}) & = & \sqrt{2} \\\\
+\lim\limits_{n \rightarrow +\infty} v_n & = & ?
+\end{eqnarray*}
+$$
+
+## Algorithme 
+
+
+```{r}
+#
+algo <- function(u_n, v_n, i) {
+  print(paste("U0 =", u_n[[1]], " | V0 =", v_n[[1]]))
+  for (x in 1:i){
+    u_n[[x+1]] <- (u_n[[x]] + v_n[[x]]) / 2
+    v_n[[x+1]] <- 2/u_n[[x+1]]
+    print(paste("U",x, " =", u_n[[x+1]]))
+    print(paste("V",x, " =", v_n[[x+1]]))
+  }
+}
+
+u_n <- list(2)
+v_n <- list(1)
+algo(u_n, v_n, 10)
+
+```
+
+## Algorithme de Newton
+
+```{r}
+# Définition de la fonction
+f <- function(x) {
+  return(x^2 - 2)
+}
+
+# Définition de la dérivée de la fonction
+df <- function(x) {
+  return(2*x)
+}
+
+# Algorithme de la méthode de Newton
+newton_method <- function(f, df, x0, tol, max_iter) {
+  x <- x0
+  iter <- 0
+  
+  repeat {
+    iter <- iter + 1
+    if (iter > max_iter) {
+      cat("La méthode de Newton n'a pas convergé après", max_iter, "itérations.\n")
+      return(NULL)
+    }
+    
+    x_new <- x - f(x) / df(x)
+    
+    if (abs(x_new - x) < tol) {
+      cat("La méthode de Newton a convergé après", iter, "itérations.\n")
+      return(x_new)
+    }
+    
+    x <- x_new
+  }
+}
+
+# Paramètres de la méthode de Newton
+x0 <- 1  # Point initial
+tol <- 1e-6  # Tolérance
+max_iter <- 100  # Nombre maximal d'itérations
+
+# Appel de la méthode de Newton
+root <- newton_method(f, df, x0, tol, max_iter)
+cat("La racine de f(x) = x^2 - 2 est:", root, "\n")
+
+```
+
+
+## Généralisation
+
+```{r}
+# Fonction de la méthode de Newton pour calculer la racine carrée
+newton_sqrt <- function(value, tol, max_iter) {
+  # Fonction
+  f <- function(x) {
+    return(x^2 - value)
+  }
+
+  # Dérivée de la fonction
+  df <- function(x) {
+    return(2 * x)
+  }
+
+  # Point initial
+  x0 <- value / 2
+
+  # Appel de la méthode de Newton
+  root <- newton_method(f, df, x0, tol, max_iter)
+  return(root)
+}
+
+# Algorithme de la méthode de Newton
+newton_method <- function(f, df, x0, tol, max_iter) {
+  x <- x0
+  iter <- 0
+  
+  repeat {
+    iter <- iter + 1
+    if (iter > max_iter) {
+      cat("La méthode de Newton n'a pas convergé après", max_iter, "itérations.\n")
+      return(NULL)
+    }
+    
+    x_new <- x - f(x) / df(x)
+    
+    if (abs(x_new - x) < tol) {
+      cat("La méthode de Newton a convergé après", iter, "itérations.\n")
+      return(x_new)
+    }
+    
+    x <- x_new
+  }
+}
+
+# Paramètres de la méthode de Newton
+value <- 10  # Valeur dont on souhaite calculer la racine carrée
+tol <- 1e-6  # Tolérance
+max_iter <- 100  # Nombre maximal d'itérations
+
+# Appel de la fonction pour calculer la racine carrée
+root <- newton_sqrt(value, tol, max_iter)
+cat("La racine carrée de", value, "est:", root, "\n")
+```
+
+# Algorithme de Newton-Raphson
+
+## Exercice 1
+
+On veut étudier le polynôme sur $[-1,1]$ :
+$$
+f(x) = \frac18 (63x^5 - 70x^3 + 15x)
+$$
+```{r}
+PolyLegendre <-function(x) 1/8*(63*x^5-70*x^3+15*x)
+curve(PolyLegendre,from=-1,to=1)
+
+
+# Fonction de la méthode de Newton pour résoudre l'équation
+AlgoNR <- function(tol, max_iter, x0) {
+  # Point initial
+
+
+  # Stockage des solutions
+  roots <- vector("list", length(x0))
+
+  # Appel de la méthode de Newton pour chaque point initial
+  for (i in 1:length(x0)) {
+    roots[[i]] <- newton(f, x0[i], tol, max_iter)
+  }
+
+  # Retourner les solutions trouvées
+  return(roots)
+}
+
+# Algorithme de la méthode de Newton
+newton <- function(f, x0, tol, max_iter) {
+  x <- x0
+  iter <- 0
+  
+  repeat {
+    iter <- iter + 1
+    if (iter > max_iter) {
+      cat("La méthode de Newton n'a pas convergé après", max_iter, "itérations.\n")
+      return(NA)
+    }
+    
+    # Approximation de la dérivée par différences finies
+    eps <- 1e-6
+    df <- (PolyLegendre(x + eps) - PolyLegendre(x)) / eps
+    
+    # Mise à jour de x
+    x_new <- x - PolyLegendre(x) / df
+    
+    # Test de convergence
+    if (abs(x_new - x) < tol) {
+      cat("La méthode de Newton a convergé après", iter, "itérations.\n")
+      return(x_new)
+    }
+    
+    x <- x_new
+  }
+}
+
+# Paramètres de la méthode de Newton
+tol <- 1e-6  # Tolérance
+max_iter <- 100  # Nombre maximal d'itérations
+x0 <- c(-1, -0.5, 0, 0.5, 1)  # Points initiaux
+
+# Appel de la fonction pour trouver les solutions de l'équation
+solutions <- AlgoNR(tol, max_iter, x0)
+
+# Affichage des solutions
+cat("Les solutions de l'équation sont:\n")
+for (i in 1:length(solutions)) {
+  cat("Solution", i, ":", solutions[[i]], "\n")
+}
+
+```
+
+```{r}
+PolyLegendre <-function(x) 1/8*(63*x^5-70*x^3+15*x)
+
+# Algorithme de la méthode de Newton avec la méthode des sécantes
+AlgoSecantes <- function(f, x0, tol, max_iter) {
+  x <- x0
+  x_prev <- x0 + tol  # Initialisation de x_prev avec une valeur légèrement différente de x0
+  iter <- 0
+  
+  repeat {
+    iter <- iter + 1
+    if (iter > max_iter) {
+      cat("La méthode de Newton avec la méthode des sécantes n'a pas convergé après", max_iter, "itérations.\n")
+      return(NA)
+    }
+    
+    # Calcul de la pente de la sécante
+    df_approx <- (f(x) - f(x_prev)) / (x - x_prev)
+    
+    # Mise à jour de x
+    x_new <- x - f(x) / df_approx
+    
+    # Test de convergence
+    if (abs(x_new - x) < tol) {
+      cat("La méthode de Newton avec la méthode des sécantes a convergé après", iter, "itérations.\n")
+      return(x_new)
+    }
+    
+    x_prev <- x
+    x <- x_new
+  }
+}
+
+# Fonction de la méthode de Newton pour résoudre l'équation avec la méthode des sécantes
+newton_secant <- function(tol, max_iter) {
+  # Fonction
+  f <- function(x) {
+    return(1/8*(63*x^5 - 70*x^3 + 15*x))
+  }
+
+  # Point initial
+  x0 <- c(-1, -0.5, 0, 0.5, 1)  # Points initiaux pour lesquels nous allons trouver les solutions
+
+  # Stockage des solutions
+  roots <- vector("list", length(x0))
+
+  # Appel de la méthode de Newton avec la méthode des sécantes pour chaque point initial
+  for (i in 1:length(x0)) {
+    roots[[i]] <- AlgoSecantes(f, x0[i], tol, max_iter)
+  }
+
+  # Retourner les solutions trouvées
+  return(roots)
+}
+
+# Paramètres de la méthode de Newton avec la méthode des sécantes
+tol <- 1e-6  # Tolérance
+max_iter <- 100  # Nombre maximal d'itérations
+
+# Appel de la fonction pour trouver les solutions de l'équation avec la méthode des sécantes
+solutions_secant <- newton_secant(tol, max_iter)
+
+# Affichage des solutions
+cat("Les solutions de l'équation sont:\n")
+for (i in 1:length(solutions_secant)) {
+  cat("Solution", i, ":", solutions_secant[[i]], "\n")
+}
+
+```
+
+Pour la fonction sur $\mathbb R_+^\star$
+$$
+f(x) = 1/x+\ln(x)-2
+$$
+```{r}
+mafonc <- function(x) 1/x+log(x)-2
+
+
+```
+
+
+## Exercice 2
+
+On veut étudier le point fixe de la fonction suivante sur $[0,1]$:
+$$
+f(x) =  \cos(x)
+$$
+```{r}
+# Appliquer les deux algorithmes précédents sur la fonction bien choisie.
+```
+
+## Exercice 3
+
+Il peut être intéressant de prendre le log de la fonction :
+$$
+\ln(f(\lambda)) = n\ln(\lambda) - \lambda \sum_{i=1}^n x_i
+$$
+
+
+
+
+
+```{r}
+# Appliquer les deux algorithmes sur une fonction bien choisie 
+# et comparer le résultat avec l'inverse de la moyenne des x_i
+```
+
+A comparer par rapport à 
+$$
+\hat{\lambda} = \frac{1}{\bar{x}_n}
+$$
+
+
+
+

@@ -1,0 +1,288 @@
+---
+title: "Guide d'achat de diamants"
+output:
+  html_document:
+    toc: yes
+  word_document:
+    toc: yes
+  pdf_document: default
+---
+
+<!--# Ceci est un commentaire : This is an R Markdown document. When you click the Knit button (pelote de laine dans le menu) a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. -->
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(dplyr)
+library(viridisLite)
+library(utf8)
+```
+
+**Le fichier Rmd est à modifier !!!**
+
+*Vous DEVEZ ENLEVER les parties qui concernent les explications et les exemples pour les REMPLACER par votre PROPRE TRAVAIL !!!!!!!*
+
+N'oubliez pas d'enregistrer votre travail à la fin de la séance.
+
+## Description rapide du jeu de données
+
+Utiliser les informations du fichier donné sur Chamilo et/ou des informations que vous pouvez trouver sur internet pour expliquer les données dont vous disposez.
+
+## Description statistique des différentes variables
+En fonction du type de variable (qualitative/quantitative) vous choisirez le graphique adapté ou les résumés numériques intéressants (moyenne, médiane, déciles).
+Puis vous donnerez quelques commentaires.
+
+### La couleur 
+
+On peut faire apparaître le code R et le résultat de l’exécution ainsi :
+
+```{r etude de la couleur}
+# combien de diamants pour chaque couleur ?
+diamonds %>%
+  group_by(color) %>%
+  summarise(frequence = round(n() / nrow(diamonds), 2), nombre = n())
+```
+
+La couleur la moins fréquente est la J (la pire) avec 5% des diamants. Pour les autres couleurs la fréquence se situe entre 10% (la couleur I) et 21% (la couleur G).
+
+### La qualité de la coupe
+
+```{r qualité de la coupe}
+# combien de diamants pour chaque qualité de coupe ?
+diamonds %>%
+  group_by(cut) %>%
+  summarise(frequence = round(n() / nrow(diamonds), 2), nombre = n()) %>%
+  arrange(desc(frequence))
+```
+3 % des diamants ont une mauvaise qualité, heureusement c'est la qualité la moins présente parmi les diamants analysés. Par ailleurs, la qualité la plus fréquente est la qualité idéale avec 40 % des diamants, c'est la meilleure qualité qu'un diamant peut avoir. En somme, on remarque qu'en classant les diamants par leur qualité, on obtient le même classement qu'en les triant par fréquence.
+
+### La clarté
+
+La clarté est une variable qualitative ordinale donc on peut faire un diagramme en barres en ordonnant l'axe des x de la qualité la moins bonne à la meilleure (ou l'inverse). Il peut aussi être intéressant de regrouper des catégories de clarté comme ci-dessous :
+
+```{r echo=FALSE}
+# Recoder la variable clarté
+diamonds %>%
+  mutate(clarte = recode(clarity,
+    "I1" = "Visible", "SI1" = "Petites inclusions",
+    "SI2" = "Petites inclusions",
+    "VS1" = "Minuscules inclusions",
+    "VS2" = "Minuscules inclusions",
+    "VVS1" = "Difficilement visibles",
+    "VVS2" = "Difficilement visibles",
+    "IF" = "Pur"
+  )) %>%
+  group_by(clarte) %>%
+  summarise(frequence = round(n() / nrow(diamonds), 2), nombre = n())
+```
+
+1 % des diamants ont des inclusions visibles. Seulement 3 % des diamants ne présentent aucune inclusion et sont donc considérés comme étant purs. Le reste des diamants, la grande majorité (95 %), présente des inclusions assez petites notamment 41 % des diamants qui possèdent de petites inclusions.
+
+### Le nombre de carats
+
+**Mais qu'est-ce qu'un carat ??**
+
+Exemples possibles de présentation : Les instructions R peuvent être cachées avec la commande echo=FALSE, voici la moyenne et la valeur médiane de la variable CARAT
+
+```{r statistiques simples, echo=FALSE}
+# Quelle est la moyenne et la médiane de la variable carat ?
+diamonds %>%
+  summarise(minimum = min(carat), moyenne = round(mean(carat), 3), maximum = max(carat), Q1 = quantile(carat, 0.25), médiane = median(carat), Q3 = quantile(carat, 0.75), D9 = quantile(carat, 0.9))
+```
+
+Et un petit commentaire : on constate ici que la moyenne du nombre de carats se situe à environ 8 et qu'elle est supérieure à la médiane indiquant que certains diamants ont un nombre de carats grand ce que l'on voit sur la valeur maximale qui est de 5 carats soit un diamant d'environ 1 gramme.
+
+**Que signifie que D9=1.51 ?**
+
+Cela signifie que 90% (9ième décile) des diamants ont un carat inférieur ou égale à 1.51.
+
+On peut bien sûr inclure des graphiques :
+
+```{r exemples de graphiques}
+ggplot(diamonds) +
+  geom_histogram(aes(x = carat, y = ..density..), breaks = seq(0, 3.5, 0.25), fill = "grey40", color = "black", alpha = 0.4)
+
+ggplot(diamonds, aes(x = color, y = carat)) +
+  geom_boxplot()
+```
+
+En regardant de plus près, c'est-à-dire en précisant que chaque intervalle sur l'axe des abscisses doit être de 0,01 et en ne considérant que les diamants de moins de 1,51 carats (soit 90% des diamants), on constate ceci :
+
+```{r message=FALSE}
+diamonds %>%
+  filter(carat <= 1.51) %>%
+  ggplot() +
+  geom_histogram(aes(x = carat),
+    breaks = (seq(0.2, 1.51, by = 0.01)),
+    closed = "left", fill = "grey40", color = "black", alpha = 0.4
+  ) +
+  scale_x_continuous(breaks = seq(0.2, 1.51, by = 0.05)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+**Commentaire ? Explications ?**
+
+### Le pourcentage de profondeur
+
+```{R Pourcentage de profondeur, echo=FALSE}
+
+
+```
+La majorité des diamants possèdent une largeur entre 2.5 et 4.5mm. On remarque que 30% des diamants ont entre 2.5 et 3mm de profondeur.
+
+### La table
+
+```{R Table des diamants, echo=FALSE}
+ggplot(diamonds, aes(x = cut, y = depth, fill = cut)) +
+  geom_boxplot() +
+  labs(title = "Table en fonction de la qualité du diamant",
+       x = "Qualité de la coupe du diamant",
+       y = "Pourcentage de profondeur")+
+       guides(fill = FALSE)
+```
+
+### Longueur, largeur et profondeur
+
+à compléter
+
+## Comment s'explique le prix d'un diamant ? -\> A faire en séance 2
+
+Pourquoi prendre le log du prix ? 
+On constate dans le tableau suivant que l'étendue des prix est très grande.
+
+```{r}
+diamonds%>%summarise(minimum = min(price),Q1 = quantile(price, 0.25), moyenne = round(mean(price), 0),  mediane = median(price), Q3 = quantile(price, 0.75), maximum=max(price))
+```
+Cela est aussi visible sur l'histogramme :
+
+```{r histogramme du prix}
+
+```
+
+
+
+La distribution avec l'axe des x en échelle logarithmique :
+
+```{r histogramme avec echelle log,message=FALSE, echo=FALSE}
+ggplot(diamonds, aes(x = price)) +
+  geom_histogram() +
+  scale_x_continuous(trans = "log10") +
+  annotation_logticks()
+```
+
+Une autre façon de faire : tracer l'histogramme de log(price) mais là on voit que l'axe des x n'est plus en dollars !!!
+
+```{r histogramme du log(prix),echo=FALSE,message=FALSE}
+ggplot(diamonds, aes(x = log(price), y = ..density..)) +
+  geom_histogram()
+```
+
+Quelques statistiques sur le logarithme du prix en fonction de la qualité de la coupe :
+
+```{r statistiques sur le prix,echo=FALSE,message=FALSE}
+# Des chiffres
+diamonds %>%
+  group_by(cut) %>%
+  summarise(moyenne = round(mean(log(price)), 3), médiane = median(log(price)))
+```
+
+Et quelques autres graphiques à titre d'exemples
+
+```{r graphiques,echo=FALSE,message=FALSE}
+ggplot(diamonds) +
+  geom_boxplot(aes(x = cut, y = log(price)))
+
+ggplot(diamonds) +
+  geom_boxplot(aes(x = cut, y = carat))
+
+ggplot(diamonds) +
+  geom_point(aes(x = carat, y = log(price)), color = "darkblue", alpha = 0.3)
+
+ggplot(diamonds) +
+  geom_point(aes(x = carat, y = log(price), color = cut), alpha = 0.3)
+
+ggplot(diamonds) +
+  geom_point(aes(x = carat, y = log(price), color = cut), alpha = 0.3) +
+  scale_x_continuous(limits = c(0, 3))
+```
+
+
+##Le prix est-il déterminé par la qualité de coupe :
+
+
+```{r Prix par cut, echo=FALSE}
+ggplot(diamonds, aes(x = cut, y = log(price), fill = cut)) +
+  geom_boxplot() +
+  labs(title = "Prix en fonction de la qualité du diamant",
+       x = "Qualité de la coupe du diamant",
+       y = "Prix")+
+       guides(fill = FALSE)
+```
+On remarque que la qualité de coupe d'un diamant n'a pas l'air d'avoir d'importance dans le prix du diamant. On remarque même que pour une qualité basse (fair) la mediane de prix et le premier quartile sont supérieurs à la médiane et premier quartile des prix pour une qualité élevé (ideal).
+
+```{r Prix par carat, echo=FALSE}
+
+ggplot(diamonds, aes(x = carat, y = log(price), color = cut)) +
+  geom_point() +
+  labs(title = "Prix en fonction des carats",
+       x = "Carat",
+       y = "Prix")
+
+```
+Sur ce graphique on voit que plus le carat d'un diamant est important plus son prix augmente.
+Au-dessus de 2 carats, les prix sont contenus entre 8 et 10 ; en dessous de 2 carats, le prix descend jusqu'à 6.
+Enfin, au-dessus de 3 carats, on remarque que le minimum de prix est 9.
+On remarque donc bien que plus le diamant a un carat élevé plus son prix l'est aussi.
+
+```{r prix en fonction de depth, echo=FALSE}
+
+ggplot(diamonds, aes(x = depth, y = log(price), color = cut)) +
+  geom_point() +
+  labs(title = "Prix en fonction du pourcentage de profondeur des diamants",
+       x = "Depth",
+       y = "Prix")
+
+```
+Ici, nous voyons que le pourcentage de profondeur n'a pas de lien direct avec le prix d'un diamant, en effet la quasi-totalité des diamants ont un pourcentage de profondeur compris entre 58% et 67%, pourtant les prix vont de 6 à 10 pour un même pourcentage de profondeur.
+Cependant, ce graphique même aussi en évidence qu'un diamant de bonne qualité a forcément un pourcentage de profondeur compris entre 62% et 63% environ ; ainsi plus on s'éloigne de ces valeurs la moins la qualité du diamant est bonne.
+
+```{r prix en fonction de la couleur, echo=FALSE}
+
+ggplot(diamonds, aes(x = color, y = log(price), fill=color)) +
+  geom_boxplot() +
+  labs(title = "Prix en fonction de la couleur des diamants",
+       x = "Color",
+       y = "Prix")
+
+```
+Ce graphique nous montre que la couleur peut avoir une influence sur le prix d'un diamant, ici, on remarque que les diamants de couleur J ont une médiane de prix supérieur à ceux de la couleur D.
+
+```{r prix en fonction de la clarté}
+ggplot(diamonds, aes(x = clarity, y = log(price), fill=clarity)) +
+  geom_boxplot() +
+  labs(title = "Prix en fonction de la clarté des diamants",
+       x = "Clarity",
+       y = "Prix")
+
+```
+La clarté IF qui est la meilleure clarté possible à une médiane des prix inférieur (et son premier quartile) à ceux des qualités VS1 à I1, I1 représentant des diamants avec inclusions visible. Ceci nous montre donc que la clarté d'un diamant n'influe pas sur son prix.
+
+```{r Carats en fonction de clarté, echo=FALSE}
+ggplot(diamonds, aes(x = clarity, y = carat, fill=clarity)) +
+  geom_boxplot() +
+  labs(title = "Carats en fonction de la clarté des diamants",
+       x = "Carats",
+       y = "Prix")
+```
+En effet, cela pouvait paraître illogique en voyant que la clarté d'un diamant ne joue pas un rôle important dans son prix or ce graphique la nous montre que les diamants avec la meilleure qualité possible sont aussi les plus petits possible et inversement. Encore une fois, on remarque donc que ce sont bien les carats d'un diamant qui détermine un rôle plus que majeur dans la determination d'un prix pour un diamant.
+
+
+```{r prix en fonction de la table}
+ggplot(diamonds, aes(x = table, y = log(price), color=table)) +
+  geom_point() +
+  labs(title = "Prix en fonction de la table des diamants",
+       x = "Table",
+       y = "Prix")
+
+```
+
+Ce graphique montre que la table d'un diamant n'influe pas sur son prix en effet on retrouve aussi bien des diamants avec 6 de prix et une table de 60 que des diamants à 10 de prix.

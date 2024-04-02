@@ -1,0 +1,77 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background-color: silver;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0px;
+}
+
+main figure {
+    width: 150px;
+    line-height: 150px;
+    font-size: 80px;
+    text-align: center;
+    background-color: none;
+    border-radius: 50%;
+    padding: 0px;
+    margin: 0;
+    /*box-shadow: 2px 2px 2px black;*/
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+main figure {
+    animation: rotate 5s linear infinite;
+}
+
+@keyframes raph{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(5);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+
+img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    animation: raph 2s linear infinite;
+    box-shadow: 2px 2px 2px black;
+}
+
+.rap{
+    background-image: url(IMG_20231218_110728_866.webp);
+}
+.axel{
+    background-image: url(2.webp);
+}

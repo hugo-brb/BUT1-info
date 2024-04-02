@@ -1,0 +1,223 @@
+-- connection à la base cinema : psql -h postgres-info -U invite cinema
+-- mdp : invite
+
+
+/*______________________________________________________________________________
+
+            Requêtes TP1 - PArtie A (FICHIER À COMPLÉTER)
+
+     Étapes à suivre pour chaque question :
+     (1)  Écrire le code de la requête
+     (2)  Copier la requête (ctrl C), puis le coller (ctrl + Shift + V)
+          dans le terminal où vous êtes connectés à PostGreSQL
+     (3)  Vérifier le résultat obtenu par comparaison à celui attendu
+          (cf. TP1B_Résultats sur Chamilo)
+     (4)  Si le résultat attendu n'est pas le bon, reprendre à l'étape 1
+
+______________________________________________________________________________*/
+
+/*------------------------------------------------------------------------------
+(a)	Numéro des salles et heure des séances du cinéma La Nef
+------------------------------------------------------------------------------*/
+SELECT numsalle, heure
+FROM seance
+WHERE nomcine = 'La Nef';
+
+
+/*------------------------------------------------------------------------------
+(b)	Pour chaque salle du cinéma Pathé : numéro de la salle, titre du film
+    projeté et prix à payer
+------------------------------------------------------------------------------*/
+SELECT numsalle, titre, prix
+FROM salle
+WHERE nomcine = 'Pathé';
+
+
+/*------------------------------------------------------------------------------
+(c)	Nom des acteurs qui jouent dans des films mis en scène par Peter Jackson
+------------------------------------------------------------------------------*/
+SELECT nomact 
+FROM acteur a, film f
+WHERE a.titre = f.titre 
+AND metteurscene = 'Peter Jackson'; 
+
+
+/*------------------------------------------------------------------------------
+(d)	Nom et adresse des cinémas qui passent des films mis en scène
+    par George Lucas
+------------------------------------------------------------------------------*/
+SELECT DISTINCT c.nomcine, adresse 
+FROM cine c, film f, salle s
+WHERE c.nomcine = s.nomcine
+AND s.titre = f.titre 
+AND metteurscene = 'George Lucas';
+
+
+/*------------------------------------------------------------------------------
+(e) Par ordre alphabétique, nom des acteurs qui jouent dans
+    au moins un des films Star Wars (le titre de ces films doit commencer
+    par Star Wars)
+------------------------------------------------------------------------------*/
+SELECT DISTINCT nomact
+FROM acteur
+WHERE titre LIKE 'Star Wars%';
+
+
+/*------------------------------------------------------------------------------
+(f) Nom des cinémas où passe un film mis en scène par un réalisateur
+    dont le nom contient Porum
+------------------------------------------------------------------------------*/
+SELECT nomcine
+FROM salle s, film f
+WHERE s.titre = f.titre
+AND metteurscene LIKE '%Porum%';
+
+
+/*------------------------------------------------------------------------------
+(g)	Heure, numéro de la salle et prix à payer pour chaque salle du cinéma La Nef
+    où est projeté le film Molière - résultat ordonné chronologiquement
+------------------------------------------------------------------------------*/
+SELECT heure, salle.numsalle, prix
+FROM salle, seance
+WHERE (salle.nomcine, salle.numsalle) = (seance.nomcine, seance.numsalle)
+AND salle.nomcine = 'La Nef' AND salle.titre = 'Molière'
+ORDER BY heure;
+
+
+/*------------------------------------------------------------------------------
+(h)	Nom des acteurs qui jouent dans Eternal Sunshine of the Spotless Mind
+    et aussi dans The Virgin Suicides
+    Une version avec opérateur ensembliste et une version sans opérateur
+    ensembliste
+------------------------------------------------------------------------------*/
+
+-- version avec opérateur ensembliste
+SELECT DISTINCT nomact
+FROM acteur
+WHERE titre = 'Eternal Sunshine of the Spotless Mind' 
+INTERSECT
+SELECT nomact
+FROM acteur
+WHERE titre = 'The Virgin Suicides';
+
+-- version sans opérateur ensembliste
+SELECT DISTINCT a1.nomact 
+FROM acteur a1, acteur a2
+WHERE a1.nomact = a2.nomact
+AND a1.titre = 'Eternal Sunshine of the Spotless Mind'
+AND a2.titre = 'The Virgin Suicides';
+
+
+/*------------------------------------------------------------------------------
+(i)	Nom des acteurs qui jouent dans Eternal Sunshine of the Spotless Mind
+    mais pas dans The Virgin Suicides
+------------------------------------------------------------------------------*/
+SELECT nomact
+FROM acteur
+WHERE titre = 'Eternal Sunshine of the Spotless Mind'
+EXCEPT
+SELECT nomact
+FROM acteur
+WHERE titre = 'The Virgin Suicides';
+
+
+/*------------------------------------------------------------------------------
+(j) Nom des acteurs qui jouent dans The Virgin Suicides mais pas
+    dans Eternal Sunshine of the Spotless Mind
+------------------------------------------------------------------------------*/
+SELECT nomact
+FROM acteur
+WHERE titre = 'The Virgin Suicides'
+EXCEPT
+SELECT nomact
+FROM acteur
+WHERE titre = 'Eternal Sunshine of the Spotless Mind';
+
+
+/*------------------------------------------------------------------------------
+(k)	Titre des films interprétés par Romain Duris ou par Fabrice Luchini
+    Une version avec opérateur ensembliste et une version sans opérateur
+    ensembliste
+------------------------------------------------------------------------------*/
+
+-- version avec opérateur ensembliste
+SELECT titre
+FROM acteur
+WHERE nomact = 'Romain Duris'
+UNION
+SELECT titre
+FROM acteur
+WHERE nomact = 'Fabrice Luchini';
+
+
+-- version sans opérateur ensembliste
+SELECT DISTINCT titre 
+FROM acteur
+WHERE nomact = 'Romain Duris'
+OR nomact = 'Fabrice Luchini';
+
+
+
+/*------------------------------------------------------------------------------
+(l) Nombre de séances où est projeté un film interprété par Romain Duris ou
+    par Fabrice Luchini
+------------------------------------------------------------------------------*/
+SELECT COUNT(se.*) as nb_seances 
+FROM seance se, acteur a, salle s
+WHERE (se.nomcine, se.numsalle) = (s.nomcine, s.numsalle) 
+AND s.titre = a.titre
+AND nomact IN ('Romain Duris','Fabrice Luchini');
+
+
+/*------------------------------------------------------------------------------
+(m) Pour toutes les projections d'un film interprété par Romain Duris ou par
+    Fabrice Luchini : titre du film, nom du cinéma, numéro de la salle,
+    heure de la projection et prix à payer
+    résultat ordonné par cinéma, puis par heure de projection
+------------------------------------------------------------------------------*/
+SELECT s.titre, s.nomcine, s.numsalle, heure, prix 
+FROM seance se, acteur a, salle s
+WHERE (se.nomcine, se.numsalle) = (s.nomcine, s.numsalle) 
+AND s.titre = a.titre
+AND nomact IN ('Romain Duris','Fabrice Luchini')
+ORDER BY s.nomcine, heure; 
+
+/*------------------------------------------------------------------------------
+(n)	Écrivez une requête qui affiche les informations suivantes :
+
+        titre     |      nomact       |        titre        |   metteurscene
+    --------------+-------------------+---------------------+-------------------
+     Les Climats  | Nuri Bilge Ceylan | Les Climats         | Nuri Bilge Ceylan
+     Mystic River | Sean Penn         | Crossing Guard      | Sean Penn
+     CQ           | Sofia Coppola     | The Virgin Suicides | Sofia Coppola
+     CQ           | Sofia Coppola     | Lost in Translation | Sofia Coppola
+    (4 rows)
+------------------------------------------------------------------------------*/
+SELECT a.titre, nomact, f.titre, metteurscene
+FROM acteur a, film f
+WHERE nomact = metteurscene; 
+
+
+/*------------------------------------------------------------------------------
+(o)	Inspirez-vous de la requête produite en (n) pour écrire des requêtes
+    affichant :                                                               */
+
+-- 1.	le nombre de films dans lesquels joue un metteur en scène
+SELECT COUNT(DISTINCT a.titre)
+FROM acteur a, film f
+WHERE nomact = metteurscene; 
+
+
+
+-- 2. le titre des films où le metteur en scène fait partie des interprètes
+SELECT DISTINCT a.titre
+FROM acteur a, film f
+WHERE a.titre = f.titre
+AND nomact = metteurscene; 
+
+
+
+
+--------------------------------------------------------------------------------
+-- FIN PARTIE A
+--------------------------------------------------------------------------------   

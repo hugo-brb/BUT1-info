@@ -1,0 +1,96 @@
+*****************************************************************************
+BARBIERI Hugo - TP6 : Bilan et rattrapage, Compléments, Applications réseau
+*****************************************************************************
+
+3. Compléments sur le logiciel grep
+====================================
+
+1.
+barbiehu@pc-dg-037-13:~$ grep père ./R1.04/pub/tp-fichiers/Avare.txt 
+HARPAGON, père de Cléante et d'Elise, et amoureux de Mariane.
+ANSELME, père de Valère et de Mariane.
+ELISE.-- Hélas! cent choses à la fois : l'emportement d'un père, les
+pour me voir, à vous revêtir de l'emploi de domestique de mon père.
+scrupules que vous avez, votre père lui-même ne prend que trop de soin
+dire de bien. Mais enfin, si je puis, comme je l'espère, retrouver mes
+à vous bien mettre dans l'esprit de mon père.
+VALERE.-- On ne peut pas ménager l'un et l'autre ; et l'esprit du père
+je dépends d'un père, et que le nom de fils me soumet à ses volontés ;
+quel déplaisir ce m'est de voir que par l'avarice d'un père je sois
+Enfin j'ai voulu vous parler pour m'aider à sonder mon père sur les
+sont semblables aux miennes, et qu'il faille que notre père s'oppose à
+
+2.
+barbiehu@pc-dg-037-13:~$ grep père ./R1.04/pub/tp-fichiers/Avare.txt | wc -l
+12
+
+3.
+barbiehu@pc-dg-037-13:~$ grep 'public class' ./R1.01/**/*.*
+./R1.01/TP1_Files/EsTest.java:public class EsTest {
+./R1.01/TP1/src/Conversion.java:public class Conversion {
+./R1.01/TP1/src/ConvertionsBis.java:public class ConvertionsBis {
+./R1.01/TP1/src/Es.java:public class Es {
+./R1.01/TP1/src/Exemple.java:public class Exemple {
+./R1.01/TP1/src/Jeu.java:public class Jeu {
+./R1.01/TP1/src/Main.java:public class Main {
+./R1.01/TP1/src/Moi.java:public class Moi {
+./R1.01/TP1/src/Moyenne.java:public class Moyenne {
+./R1.01/TP1/src/Permutation.java:public class Permutation {
+./R1.01/TP2A/src/Calendrier.java:public class Calendrier {
+./R1.01/TP2A/src/Competition.java:public class Competition {
+./R1.01/TP2A/src/Localisation.java:public class Localisation {
+./R1.01/TP2A/src/Meteo.java:public class Meteo {
+./R1.01/TP2B/src/Calculs.java:public class Calculs {
+./R1.01/TP2B/src/Nim.java:public class Nim {
+./R1.01/TP3A/src/Cercle.java:public class Cercle {
+./R1.01/TP3A/src/Geometrie.java:public class Geometrie {
+./R1.01/TP3A/src/Rectangle.java:public class Rectangle {
+./R1.01/TP3A/src/Triangle.java:public class Triangle {
+./R1.01/TP3A/src/Utilitaire.java:public class Utilitaire {
+./R1.01/TP3B/src/Compare_Strings.java:public class Compare_Strings {
+./R1.01/TP3B/src/Explore_Strings.java:public class Explore_Strings {
+./R1.01/TP4_Files/Point.java:public class Point {
+./R1.01/TP4/src/Point.java:public class Point {
+./R1.01/TP4/src/TriangleAgrege.java:public class TriangleAgrege {
+./R1.01/TP4/src/TriangleCompose.java:public class TriangleCompose {
+./R1.01/TP4/src/Triangle_Main2.java:public class Triangle_Main2 {
+./R1.01/TP4/src/Triangle_Main.java:public class Triangle_Main {
+./R1.01/TP4/src/Triangle_Utilitaire.java:public class Triangle_Utilitaire {
+./R1.01/TP5A/src/VecteursDeInteger.java:public class VecteursDeInteger {
+./R1.01/TP5A/src/VecteursDeString.java:public class VecteursDeString {
+./R1.01/TP5B/src/Pollution.java:public class Pollution {
+./R1.01/TP5B/src/ReleveMensuel.java:public class ReleveMensuel {
+./R1.01/TP5B/src/Utilitaire.java:public class Utilitaire {
+
+4.
+barbiehu@pc-dg-037-13:~$ grep 'public class' ./R1.01/**/*.* | wc -l
+35
+
+5.
+barbiehu@pc-dg-037-13:~$ grep 'import java.util.ArrayList' ./R1.01/**/*.*
+./R1.01/TP5A/src/VecteursDeInteger.java:import java.util.ArrayList;
+./R1.01/TP5A/src/VecteursDeString.java:import java.util.ArrayList;
+./R1.01/TP5B/src/Pollution.java:import java.util.ArrayList;
+./R1.01/TP5B/src/Utilitaire.java:import java.util.Scanner; import java.util.ArrayList;
+
+4. Compléments sur les wildcards
+=================================
+1. ./bash_aliases
+
+6. Utilisation de machines en réseau
+=====================================
+
+6.1 Inventaire des machines et des users
+------------------------------------------
+
+3.
+barbiehu@pc-dg-037-13:~$ ruptime | grep 'pc-dg-' | wc -l
+87
+
+6.2 Utilisation de machines à distance
+---------------------------------------
+
+1.
+
+
+

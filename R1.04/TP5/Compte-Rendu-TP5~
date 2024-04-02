@@ -1,0 +1,49 @@
+***************************************************************************
+BARBIERI Hugo - TP5 : Permissions Unix, Scripts shell, Liens symboliques
+***************************************************************************
+
+2. Droits d'accès aux fichiers
+===============================
+
+FAIT
+
+3. Scripts shell
+=================
+
+3.1 Variable d'environnement PATH
+-----------------------------------
+
+1.
+barbiehu@pc-dg-025-10:~/Public$ echo "$PATH"
+/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/users/info/pub/bin
+
+2. IL y en a 6.
+
+4. Commande not found
+
+5. Cela fonctionne, le shell retrouve l'emplacement du logiciel ls
+
+6.
+barbiehu@pc-dg-025-10:~$ echo "$PATH"
+/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/users/info/pub/bin
+
+7. 8. FAIT
+
+3.2 Premier script
+-------------------
+
+4. 
+barbiehu@pc-dg-025-10:~/.local/bin$ ./essai-script 
+Ça marche !
+
+3.3 Script avec paramètre
+---------------------------
+
+2.  
+barbiehu@pc-dg-025-10:~$ script-param toto
+La valeur du paramètre est : toto
+
+3.4 Script d'archivage simple
+
+
+3.6

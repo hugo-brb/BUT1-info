@@ -1,0 +1,188 @@
+**********************************************************
+BARBIERI Hugo - TP3 : Redirections, filtres, recherches
+**********************************************************
+
+2. Redirections d'entrées/sorties, filtres
+===========================================
+
+2.2 Redirection des entrées/sorties
+------------------------------------
+
+total 24
+-rw-r--r-- 1 barbiehu infobut1 344 28 sept. 08:00 Compte-rendu-tp3
+-rw-r--r-- 1 barbiehu infobut1 340 28 sept. 08:00 Compte-rendu-tp3~
+-rwxr-xr-x 1 barbiehu infobut1  43 25 sept. 15:49 liste1a
+-rwxr-xr-x 1 barbiehu infobut1  64 25 sept. 15:47 liste1a-vrais
+-rwxr-xr-x 1 barbiehu infobut1  80 25 sept. 15:48 liste1a-vrais-noms
+-rw-r--r-- 1 barbiehu infobut1  76 11 oct.   2021 mots
+-rw-r--r-- 1 barbiehu infobut1   0 28 sept. 08:08 trace.txt
+
+    PID TTY          TIME CMD
+   8178 pts/1    00:00:00 bash
+  10939 pts/1    00:00:00 ps
+  
+réseau
+bases de données
+programmation
+informatique
+système
+modélisation
+
+bases de données
+informatique
+modélisation
+programmation
+réseau
+système
+
+(contenu du fichier : trace.txt)
+
+2.3 Filtres
+------------
+
+	Travail préparatoire : 
+
+2.
+
+Nom / Prénom / répertoire personnel / bash
+
+3.
+
+1000 lignes
+
+	Travail à réaliser :
+
+1.
+
+Le filtre est : grep '/users/info/etu-1a/'.
+Il permet de lister seulement les étudiants de première année.
+
+3.
+
+getent passwd | grep '/users/info/etu-1a/' | wc
+    151     312   11673
+
+4.
+
+getent passwd | grep '/users/info/etu-1a/' | head -3
+akopiane:*:105021:212001:AKOPIAN Edwin:/users/info/etu-1a/akopiane:/bin/bash
+bardia:*:104965:212001:BARDI Amyn:/users/info/etu-1a/bardia:/bin/bash
+braitita:*:106912:212001:BRAITIT AYMAN:/users/info/etu-1a/braitita:/bin/bash
+
+5.
+
+getent passwd | grep '/users/info/etu-1a/' | tail -3
+faurelu:*:107283:212001:FAURE Lukas:/users/info/etu-1a/faurelu:/bin/bash
+francoue:*:107284:212001:FRANCOU Eddy:/users/info/etu-1a/francoue:/bin/bash
+mbelondm:*:109244:212001:MBELO NDRIAMANAMPY Manohisoa:/users/info/etu-1a/mbelondm:/bin/bash
+
+6.
+
+L'option -v
+
+8.
+
+-d permet d'utiliser un délimiteur au lieu d'une tabulation comme délimiteur de champs 
+-f permet de séléctionner seulement certains champs
+':' est le délimiteur
+
+11.
+
+getent passwd | grep '/users/info/etu-1a/' | grep -v 'iutdeuxt' | cut -d':' -f5 | cut -d' ' -f2
+
+12.
+
+getent passwd | grep '/users/info/etu-1a/' | grep -v 'iutdeuxt' | cut -d':' -f5 | cut -d' ' -f2 | sort
+
+13.
+
+getent passwd | grep '/users/info/etu-1a/' | grep -v 'iutdeuxt' | cut -d':' -f5 | cut -d' ' -f2 | sort | uniq
+
+14.
+
+getent passwd | grep '/users/info/etu-1a/' | grep -v 'iutdeuxt' | cut -d':' -f5 | cut -d' ' -f2 | sort | uniq -c -d
+
+15.
+
+getent passwd | grep '/users/info/etu-1a/' | grep -v 'iutdeuxt' | cut -d':' -f5 | cut -d' ' -f2 | sort -r | uniq -c -d 
+
+
+16.
+
+getent passwd | grep '/users/info/etu-1a/' | grep -v 'iutdeuxt' | cut -d':' -f5 | cut -d' ' -f2 | sort | uniq -c -d | sort -r | head -10
+>> Thomas / Paul / Nolan / Lucas / Adam
+
+17.
+
+getent passwd | grep '/users/info/etu-' | grep -v 'iutdeuxt' | cut -d':' -f5 | cut -d' ' -f2 | sort | uniq -c -d | sort -r | head -10
+>> Paul
+
+3. Recherche et indexation de fichiers
+=======================================
+
+3.1 Recherche de pages de manuel et de logiciels
+-------------------------------------------------
+
+1.
+
+man -k PDF
+
+2.
+
+man -k JAVA
+
+3.2 Recherche de fichiers
+--------------------------
+
+1. 
+
+find ~
+Elle affiche tout les chemins de tout les fichiers contenu dans le répertoire ~ .
+
+2.
+
+find ~ | wc
+Il y a 1545 entrées da s mon homedir
+
+3.
+
+find ~ | grep 'java'
+
+4.
+
+find ~ | grep 'java' -c
+>> 25
+
+3.3 Indexation des fichiers
+----------------------------
+	LOCAL
+1.
+
+locate '.java'
+
+2.
+
+locate '.java' | wc
+>> 2142
+
+3.
+
+locate '/bin/' | grep 'firefox'
+/usr/bin/firefox-esr
+/usr/local/bin/firefox
+/usr/local/bin/firefox-release
+/usr/local/bin/firefox.real
+
+	EREBUS4
+1. 
+
+Dans le répertoire : /users/info/pub/1a/R1.04/.repertoire-caché/rep1/rep2/Toto.java
+
+2.
+
+/users/info/etu-1a/barbiehu/.mozilla/firefox/jmiv1td1.default-release/places.sqlite
+
+3.
+
+/users/info/etu-1a/barbiehu/.config/gedit
+/users/info/etu-1a/barbiehu/.config/gedit/accels

@@ -1,0 +1,36 @@
+00000000                                     1    		ORG	$0
+00000000  00008000                           2  		DC.L	$8000	; adresse de la pile
+00000004  00000AC0                           3  		DC.L	Inst1	; pour initialisation PC (Compteur Ordinal)
+00000008                                     4  
+00000008                                     5  * declaration des "variables" du programme
+00000008                                     6  * on reserve et on initialise avec la directive DC 
+00000008                                     7  * on reserve sans initialiser avec la directive DS
+00000A00                                     8  		ORG	$A00
+00000A00                                     9  Solde		DS.W 1
+00000A02                                    10  Depenses	DS.W 1
+00000A04                                    11  
+00000A04                                    12  
+00000A04                                    13  * debut des instructions du programme
+00000A04                                    14  
+00000AC0                                    15  		ORG	$AC0
+00000AC0  31FC 0014 0A00                    16  Inst1		MOVE.W #20,Solde     ;  Solde := 20
+00000AC6  31FC 0028 0A02                    17  		MOVE.W #40,Depenses   ;  Depenses :=40
+00000ACC                                    18  
+00000ACC                                    19  *  a vous d'ecrire la suite en assembleur...
+00000ACC  0C78 0014 0A00                    20  tq		CMPI.W 	#20,Solde			;Comparaisons entre Soldes et 20
+00000AD2  6E00 0016                         21  		BGT	fintq				; aller à fintq pour Solde > 20
+00000AD6  0C78 0032 0A02                    22  et		CMPI.W	#50,Depenses			;Comparaisons entre Depenses et 50
+00000ADC  6C00 000C                         23  		BGE	fintq				
+00000AE0  5B78 0A00                         24  faire		SUBI.W	#5,Solde
+00000AE4  5A78 0A02                         25  		ADDI.W	#5,Depenses
+00000AE8  60E2                              26  		BRA	tq
+00000AEA                                    27  fintq
+00000AEA                                    28  
+00000AEA                                    29  * fin du programme principal
+00000AEA  4848                              30  		BREAK	
+00000AEC                                    31  
+00000AEC                                    32  * fin du contenu a assembler
+00000AEC                                    33  		END
+
+No errors detected
+No warnings generated

@@ -1,0 +1,620 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Rendu du TP Méthodes Numériques},
+  pdfauthor={Loan NICOLAS-DEMBA \& Hugo BARBIERI - C1},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Rendu du TP Méthodes Numériques}
+\author{Loan NICOLAS-DEMBA \& Hugo BARBIERI - C1}
+\date{}
+
+\begin{document}
+\maketitle
+
+\hypertarget{approximation-de-sqrt2}{%
+\section{\texorpdfstring{Approximation de
+\(\sqrt{2}\)}{Approximation de \textbackslash sqrt\{2\}}}\label{approximation-de-sqrt2}}
+
+\hypertarget{construction-des-deux-suites}{%
+\subsection{Construction des deux
+suites}\label{construction-des-deux-suites}}
+
+On part du rectangle de largeur \(1\) et de longueur \(2\), qui a donc
+une aire égale à \(2\). Pour l'étape suivante, on souhaite raccourcir la
+longueur de ce rectangle. Pour cela, on prend comme nouvelle longueur,
+la moyenne de la longueur et de la largeur. On en déduit la nouvelle
+largeur, afin de préserver la surface de ce nouveau rectangle égale à
+\(2\), et ainsi de suite.
+
+On notera \((u_n)_{n\in\mathbb N}\) la longueur du rectangle à l'étape
+\(n\) (on commence à \(n=0\)) et \((v_n)_{n\in\mathbb N}\) la largeur du
+rectangle à l'étape \(n\) de telle façon que la surface soit égale à
+\(2\) : \[
+\forall n\in \mathbb N,\, v_n= \frac2u_n
+\] \#\# Signe de \(u_{n+1}-\sqrt{2}\)
+
+\[
+\begin{eqnarray*}
+u_{n+1}-\sqrt{2} & = & \frac{u_n + v_n}2 - \sqrt{2}  \\\\ 
+                & = & \frac{u_n + \frac2u_n}2 - \sqrt{2}    \\\\
+                & = & \frac{u_n^2+2-(2u_n*\sqrt{2})}{2u_n} \\\\
+               0 & \leq & \frac{(u_n-\sqrt{2})^2}{2u_n}
+\end{eqnarray*}
+\] Car \(u_n\) est une longueur elle est donc forcément supérieur à 0.
+Et \((u_n-\sqrt{2})^2\) supérieur à 0.
+
+\hypertarget{calcul-de-u_n1-u_n}{%
+\subsection{\texorpdfstring{Calcul de
+\(u_{n+1}-u_n\)}{Calcul de u\_\{n+1\}-u\_n}}\label{calcul-de-u_n1-u_n}}
+
+\[
+\begin{eqnarray*}
+u_{n+1}-u_n & = & \frac{u_n+v_n}{2}-u_n \\\\
+            & = & \frac{-u_n^2+2}{2u_n}
+\end{eqnarray*}
+\] On sait que \(u_n > \sqrt{2}\) Donc \(u_n^2 > 2\) Soit
+\(0 > -u_n^2+2\) Ce qui nous donne \(\frac{-u_n^2+2}{2u_n} < 0\)
+
+La suite \(u_n\) est donc une suite décroissante, convergente.
+
+\hypertarget{uxe9tudier-la-fonction-f}{%
+\subsection{\texorpdfstring{Étudier la fonction
+\(f\)}{Étudier la fonction f}}\label{uxe9tudier-la-fonction-f}}
+
+La fonction \(f\), définie sur \([1,2]\) est
+\(f(x)=\frac12(x+\frac{2}{x})\)
+
+Il faudra calculer\\
+\[
+\begin{eqnarray*}
+                                      l & = & f(l)                                                        \\\\
+                            f(\sqrt{2}) & = & \frac{1}{2} (\sqrt{2} + \frac{2}{\sqrt{2}})                    \\\\
+                            f(\sqrt{2}) & = & \sqrt{2}                                                      \\\\
+\lim\limits_{n \rightarrow +\infty} u_n & = & \sqrt{2}
+\end{eqnarray*}
+\] ainsi que
+
+\[
+\begin{eqnarray*}
+l & = & f(l)\\\\
+f(x) & = & \frac2x\\\\
+Donc \ f(\sqrt{2}) & = & \frac2{\sqrt{2}}\\\\
+f(\sqrt{2}) & = & \sqrt{2} \\\\
+\lim\limits_{n \rightarrow +\infty} v_n & = & ?
+\end{eqnarray*}
+\]
+
+\hypertarget{algorithme}{%
+\subsection{Algorithme}\label{algorithme}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#}
+\NormalTok{algo }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(u\_n, v\_n, i) \{}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"U0 ="}\NormalTok{, u\_n[[}\DecValTok{1}\NormalTok{]], }\StringTok{" | V0 ="}\NormalTok{, v\_n[[}\DecValTok{1}\NormalTok{]]))}
+  \ControlFlowTok{for}\NormalTok{ (x }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{i)\{}
+\NormalTok{    u\_n[[x}\SpecialCharTok{+}\DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ (u\_n[[x]] }\SpecialCharTok{+}\NormalTok{ v\_n[[x]]) }\SpecialCharTok{/} \DecValTok{2}
+\NormalTok{    v\_n[[x}\SpecialCharTok{+}\DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}} \DecValTok{2}\SpecialCharTok{/}\NormalTok{u\_n[[x}\SpecialCharTok{+}\DecValTok{1}\NormalTok{]]}
+    \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"U"}\NormalTok{,x, }\StringTok{" ="}\NormalTok{, u\_n[[x}\SpecialCharTok{+}\DecValTok{1}\NormalTok{]]))}
+    \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"V"}\NormalTok{,x, }\StringTok{" ="}\NormalTok{, v\_n[[x}\SpecialCharTok{+}\DecValTok{1}\NormalTok{]]))}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\NormalTok{u\_n }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\NormalTok{v\_n }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\FunctionTok{algo}\NormalTok{(u\_n, v\_n, }\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "U0 = 2  | V0 = 1"
+## [1] "U 1  = 1.5"
+## [1] "V 1  = 1.33333333333333"
+## [1] "U 2  = 1.41666666666667"
+## [1] "V 2  = 1.41176470588235"
+## [1] "U 3  = 1.41421568627451"
+## [1] "V 3  = 1.41421143847487"
+## [1] "U 4  = 1.41421356237469"
+## [1] "V 4  = 1.4142135623715"
+## [1] "U 5  = 1.41421356237309"
+## [1] "V 5  = 1.4142135623731"
+## [1] "U 6  = 1.41421356237309"
+## [1] "V 6  = 1.4142135623731"
+## [1] "U 7  = 1.41421356237309"
+## [1] "V 7  = 1.4142135623731"
+## [1] "U 8  = 1.41421356237309"
+## [1] "V 8  = 1.4142135623731"
+## [1] "U 9  = 1.41421356237309"
+## [1] "V 9  = 1.4142135623731"
+## [1] "U 10  = 1.41421356237309"
+## [1] "V 10  = 1.4142135623731"
+\end{verbatim}
+
+\hypertarget{algorithme-de-newton}{%
+\subsection{Algorithme de Newton}\label{algorithme-de-newton}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Définition de la fonction}
+\NormalTok{f }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
+  \FunctionTok{return}\NormalTok{(x}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{)}
+\NormalTok{\}}
+
+\CommentTok{\# Définition de la dérivée de la fonction}
+\NormalTok{df }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
+  \FunctionTok{return}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{x)}
+\NormalTok{\}}
+
+\CommentTok{\# Algorithme de la méthode de Newton}
+\NormalTok{newton\_method }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(f, df, x0, tol, max\_iter) \{}
+\NormalTok{  x }\OtherTok{\textless{}{-}}\NormalTok{ x0}
+\NormalTok{  iter }\OtherTok{\textless{}{-}} \DecValTok{0}
+  
+  \ControlFlowTok{repeat}\NormalTok{ \{}
+\NormalTok{    iter }\OtherTok{\textless{}{-}}\NormalTok{ iter }\SpecialCharTok{+} \DecValTok{1}
+    \ControlFlowTok{if}\NormalTok{ (iter }\SpecialCharTok{\textgreater{}}\NormalTok{ max\_iter) \{}
+      \FunctionTok{cat}\NormalTok{(}\StringTok{"La méthode de Newton n\textquotesingle{}a pas convergé après"}\NormalTok{, max\_iter, }\StringTok{"itérations.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+      \FunctionTok{return}\NormalTok{(}\ConstantTok{NULL}\NormalTok{)}
+\NormalTok{    \}}
+    
+\NormalTok{    x\_new }\OtherTok{\textless{}{-}}\NormalTok{ x }\SpecialCharTok{{-}} \FunctionTok{f}\NormalTok{(x) }\SpecialCharTok{/} \FunctionTok{df}\NormalTok{(x)}
+    
+    \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{abs}\NormalTok{(x\_new }\SpecialCharTok{{-}}\NormalTok{ x) }\SpecialCharTok{\textless{}}\NormalTok{ tol) \{}
+      \FunctionTok{cat}\NormalTok{(}\StringTok{"La méthode de Newton a convergé après"}\NormalTok{, iter, }\StringTok{"itérations.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+      \FunctionTok{return}\NormalTok{(x\_new)}
+\NormalTok{    \}}
+    
+\NormalTok{    x }\OtherTok{\textless{}{-}}\NormalTok{ x\_new}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\CommentTok{\# Paramètres de la méthode de Newton}
+\NormalTok{x0 }\OtherTok{\textless{}{-}} \DecValTok{1}  \CommentTok{\# Point initial}
+\NormalTok{tol }\OtherTok{\textless{}{-}} \FloatTok{1e{-}6}  \CommentTok{\# Tolérance}
+\NormalTok{max\_iter }\OtherTok{\textless{}{-}} \DecValTok{100}  \CommentTok{\# Nombre maximal d\textquotesingle{}itérations}
+
+\CommentTok{\# Appel de la méthode de Newton}
+\NormalTok{root }\OtherTok{\textless{}{-}} \FunctionTok{newton\_method}\NormalTok{(f, df, x0, tol, max\_iter)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## La méthode de Newton a convergé après 5 itérations.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"La racine de f(x) = x\^{}2 {-} 2 est:"}\NormalTok{, root, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## La racine de f(x) = x^2 - 2 est: 1.414214
+\end{verbatim}
+
+\hypertarget{guxe9nuxe9ralisation}{%
+\subsection{Généralisation}\label{guxe9nuxe9ralisation}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fonction de la méthode de Newton pour calculer la racine carrée}
+\NormalTok{newton\_sqrt }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(value, tol, max\_iter) \{}
+  \CommentTok{\# Fonction}
+\NormalTok{  f }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
+    \FunctionTok{return}\NormalTok{(x}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}}\NormalTok{ value)}
+\NormalTok{  \}}
+
+  \CommentTok{\# Dérivée de la fonction}
+\NormalTok{  df }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
+    \FunctionTok{return}\NormalTok{(}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ x)}
+\NormalTok{  \}}
+
+  \CommentTok{\# Point initial}
+\NormalTok{  x0 }\OtherTok{\textless{}{-}}\NormalTok{ value }\SpecialCharTok{/} \DecValTok{2}
+
+  \CommentTok{\# Appel de la méthode de Newton}
+\NormalTok{  root }\OtherTok{\textless{}{-}} \FunctionTok{newton\_method}\NormalTok{(f, df, x0, tol, max\_iter)}
+  \FunctionTok{return}\NormalTok{(root)}
+\NormalTok{\}}
+
+\CommentTok{\# Algorithme de la méthode de Newton}
+\NormalTok{newton\_method }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(f, df, x0, tol, max\_iter) \{}
+\NormalTok{  x }\OtherTok{\textless{}{-}}\NormalTok{ x0}
+\NormalTok{  iter }\OtherTok{\textless{}{-}} \DecValTok{0}
+  
+  \ControlFlowTok{repeat}\NormalTok{ \{}
+\NormalTok{    iter }\OtherTok{\textless{}{-}}\NormalTok{ iter }\SpecialCharTok{+} \DecValTok{1}
+    \ControlFlowTok{if}\NormalTok{ (iter }\SpecialCharTok{\textgreater{}}\NormalTok{ max\_iter) \{}
+      \FunctionTok{cat}\NormalTok{(}\StringTok{"La méthode de Newton n\textquotesingle{}a pas convergé après"}\NormalTok{, max\_iter, }\StringTok{"itérations.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+      \FunctionTok{return}\NormalTok{(}\ConstantTok{NULL}\NormalTok{)}
+\NormalTok{    \}}
+    
+\NormalTok{    x\_new }\OtherTok{\textless{}{-}}\NormalTok{ x }\SpecialCharTok{{-}} \FunctionTok{f}\NormalTok{(x) }\SpecialCharTok{/} \FunctionTok{df}\NormalTok{(x)}
+    
+    \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{abs}\NormalTok{(x\_new }\SpecialCharTok{{-}}\NormalTok{ x) }\SpecialCharTok{\textless{}}\NormalTok{ tol) \{}
+      \FunctionTok{cat}\NormalTok{(}\StringTok{"La méthode de Newton a convergé après"}\NormalTok{, iter, }\StringTok{"itérations.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+      \FunctionTok{return}\NormalTok{(x\_new)}
+\NormalTok{    \}}
+    
+\NormalTok{    x }\OtherTok{\textless{}{-}}\NormalTok{ x\_new}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\CommentTok{\# Paramètres de la méthode de Newton}
+\NormalTok{value }\OtherTok{\textless{}{-}} \DecValTok{10}  \CommentTok{\# Valeur dont on souhaite calculer la racine carrée}
+\NormalTok{tol }\OtherTok{\textless{}{-}} \FloatTok{1e{-}6}  \CommentTok{\# Tolérance}
+\NormalTok{max\_iter }\OtherTok{\textless{}{-}} \DecValTok{100}  \CommentTok{\# Nombre maximal d\textquotesingle{}itérations}
+
+\CommentTok{\# Appel de la fonction pour calculer la racine carrée}
+\NormalTok{root }\OtherTok{\textless{}{-}} \FunctionTok{newton\_sqrt}\NormalTok{(value, tol, max\_iter)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## La méthode de Newton a convergé après 5 itérations.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"La racine carrée de"}\NormalTok{, value, }\StringTok{"est:"}\NormalTok{, root, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## La racine carrée de 10 est: 3.162278
+\end{verbatim}
+
+\hypertarget{algorithme-de-newton-raphson}{%
+\section{Algorithme de
+Newton-Raphson}\label{algorithme-de-newton-raphson}}
+
+\hypertarget{exercice-1}{%
+\subsection{Exercice 1}\label{exercice-1}}
+
+On veut étudier le polynôme sur \([-1,1]\) : \[
+f(x) = \frac18 (63x^5 - 70x^3 + 15x)
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PolyLegendre }\OtherTok{\textless{}{-}}\ControlFlowTok{function}\NormalTok{(x) }\DecValTok{1}\SpecialCharTok{/}\DecValTok{8}\SpecialCharTok{*}\NormalTok{(}\DecValTok{63}\SpecialCharTok{*}\NormalTok{x}\SpecialCharTok{\^{}}\DecValTok{5{-}70}\SpecialCharTok{*}\NormalTok{x}\SpecialCharTok{\^{}}\DecValTok{3}\SpecialCharTok{+}\DecValTok{15}\SpecialCharTok{*}\NormalTok{x)}
+\FunctionTok{curve}\NormalTok{(PolyLegendre,}\AttributeTok{from=}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\AttributeTok{to=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{TP_rendu_NICOLAS-DEMBA_Loan-BARBIERI_Hugo_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fonction de la méthode de Newton pour résoudre l\textquotesingle{}équation}
+\NormalTok{AlgoNR }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(tol, max\_iter, x0) \{}
+  \CommentTok{\# Point initial}
+
+
+  \CommentTok{\# Stockage des solutions}
+\NormalTok{  roots }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\StringTok{"list"}\NormalTok{, }\FunctionTok{length}\NormalTok{(x0))}
+
+  \CommentTok{\# Appel de la méthode de Newton pour chaque point initial}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(x0)) \{}
+\NormalTok{    roots[[i]] }\OtherTok{\textless{}{-}} \FunctionTok{newton}\NormalTok{(f, x0[i], tol, max\_iter)}
+\NormalTok{  \}}
+
+  \CommentTok{\# Retourner les solutions trouvées}
+  \FunctionTok{return}\NormalTok{(roots)}
+\NormalTok{\}}
+
+\CommentTok{\# Algorithme de la méthode de Newton}
+\NormalTok{newton }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(f, x0, tol, max\_iter) \{}
+\NormalTok{  x }\OtherTok{\textless{}{-}}\NormalTok{ x0}
+\NormalTok{  iter }\OtherTok{\textless{}{-}} \DecValTok{0}
+  
+  \ControlFlowTok{repeat}\NormalTok{ \{}
+\NormalTok{    iter }\OtherTok{\textless{}{-}}\NormalTok{ iter }\SpecialCharTok{+} \DecValTok{1}
+    \ControlFlowTok{if}\NormalTok{ (iter }\SpecialCharTok{\textgreater{}}\NormalTok{ max\_iter) \{}
+      \FunctionTok{cat}\NormalTok{(}\StringTok{"La méthode de Newton n\textquotesingle{}a pas convergé après"}\NormalTok{, max\_iter, }\StringTok{"itérations.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+      \FunctionTok{return}\NormalTok{(}\ConstantTok{NA}\NormalTok{)}
+\NormalTok{    \}}
+    
+    \CommentTok{\# Approximation de la dérivée par différences finies}
+\NormalTok{    eps }\OtherTok{\textless{}{-}} \FloatTok{1e{-}6}
+\NormalTok{    df }\OtherTok{\textless{}{-}}\NormalTok{ (}\FunctionTok{PolyLegendre}\NormalTok{(x }\SpecialCharTok{+}\NormalTok{ eps) }\SpecialCharTok{{-}} \FunctionTok{PolyLegendre}\NormalTok{(x)) }\SpecialCharTok{/}\NormalTok{ eps}
+    
+    \CommentTok{\# Mise à jour de x}
+\NormalTok{    x\_new }\OtherTok{\textless{}{-}}\NormalTok{ x }\SpecialCharTok{{-}} \FunctionTok{PolyLegendre}\NormalTok{(x) }\SpecialCharTok{/}\NormalTok{ df}
+    
+    \CommentTok{\# Test de convergence}
+    \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{abs}\NormalTok{(x\_new }\SpecialCharTok{{-}}\NormalTok{ x) }\SpecialCharTok{\textless{}}\NormalTok{ tol) \{}
+      \FunctionTok{cat}\NormalTok{(}\StringTok{"La méthode de Newton a convergé après"}\NormalTok{, iter, }\StringTok{"itérations.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+      \FunctionTok{return}\NormalTok{(x\_new)}
+\NormalTok{    \}}
+    
+\NormalTok{    x }\OtherTok{\textless{}{-}}\NormalTok{ x\_new}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\CommentTok{\# Paramètres de la méthode de Newton}
+\NormalTok{tol }\OtherTok{\textless{}{-}} \FloatTok{1e{-}6}  \CommentTok{\# Tolérance}
+\NormalTok{max\_iter }\OtherTok{\textless{}{-}} \DecValTok{100}  \CommentTok{\# Nombre maximal d\textquotesingle{}itérations}
+\NormalTok{x0 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{, }\DecValTok{0}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\DecValTok{1}\NormalTok{)  }\CommentTok{\# Points initiaux}
+
+\CommentTok{\# Appel de la fonction pour trouver les solutions de l\textquotesingle{}équation}
+\NormalTok{solutions }\OtherTok{\textless{}{-}} \FunctionTok{AlgoNR}\NormalTok{(tol, max\_iter, x0)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## La méthode de Newton a convergé après 5 itérations.
+## La méthode de Newton a convergé après 4 itérations.
+## La méthode de Newton a convergé après 1 itérations.
+## La méthode de Newton a convergé après 4 itérations.
+## La méthode de Newton a convergé après 5 itérations.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Affichage des solutions}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Les solutions de l\textquotesingle{}équation sont:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Les solutions de l'équation sont:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(solutions)) \{}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"Solution"}\NormalTok{, i, }\StringTok{":"}\NormalTok{, solutions[[i]], }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Solution 1 : -0.9061798 
+## Solution 2 : -0.5384693 
+## Solution 3 : 0 
+## Solution 4 : 0.5384693 
+## Solution 5 : 0.9061798
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PolyLegendre }\OtherTok{\textless{}{-}}\ControlFlowTok{function}\NormalTok{(x) }\DecValTok{1}\SpecialCharTok{/}\DecValTok{8}\SpecialCharTok{*}\NormalTok{(}\DecValTok{63}\SpecialCharTok{*}\NormalTok{x}\SpecialCharTok{\^{}}\DecValTok{5{-}70}\SpecialCharTok{*}\NormalTok{x}\SpecialCharTok{\^{}}\DecValTok{3}\SpecialCharTok{+}\DecValTok{15}\SpecialCharTok{*}\NormalTok{x)}
+
+\CommentTok{\# Algorithme de la méthode de Newton avec la méthode des sécantes}
+\NormalTok{AlgoSecantes }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(f, x0, tol, max\_iter) \{}
+\NormalTok{  x }\OtherTok{\textless{}{-}}\NormalTok{ x0}
+\NormalTok{  x\_prev }\OtherTok{\textless{}{-}}\NormalTok{ x0 }\SpecialCharTok{+}\NormalTok{ tol  }\CommentTok{\# Initialisation de x\_prev avec une valeur légèrement différente de x0}
+\NormalTok{  iter }\OtherTok{\textless{}{-}} \DecValTok{0}
+  
+  \ControlFlowTok{repeat}\NormalTok{ \{}
+\NormalTok{    iter }\OtherTok{\textless{}{-}}\NormalTok{ iter }\SpecialCharTok{+} \DecValTok{1}
+    \ControlFlowTok{if}\NormalTok{ (iter }\SpecialCharTok{\textgreater{}}\NormalTok{ max\_iter) \{}
+      \FunctionTok{cat}\NormalTok{(}\StringTok{"La méthode de Newton avec la méthode des sécantes n\textquotesingle{}a pas convergé après"}\NormalTok{, max\_iter, }\StringTok{"itérations.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+      \FunctionTok{return}\NormalTok{(}\ConstantTok{NA}\NormalTok{)}
+\NormalTok{    \}}
+    
+    \CommentTok{\# Calcul de la pente de la sécante}
+\NormalTok{    df\_approx }\OtherTok{\textless{}{-}}\NormalTok{ (}\FunctionTok{f}\NormalTok{(x) }\SpecialCharTok{{-}} \FunctionTok{f}\NormalTok{(x\_prev)) }\SpecialCharTok{/}\NormalTok{ (x }\SpecialCharTok{{-}}\NormalTok{ x\_prev)}
+    
+    \CommentTok{\# Mise à jour de x}
+\NormalTok{    x\_new }\OtherTok{\textless{}{-}}\NormalTok{ x }\SpecialCharTok{{-}} \FunctionTok{f}\NormalTok{(x) }\SpecialCharTok{/}\NormalTok{ df\_approx}
+    
+    \CommentTok{\# Test de convergence}
+    \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{abs}\NormalTok{(x\_new }\SpecialCharTok{{-}}\NormalTok{ x) }\SpecialCharTok{\textless{}}\NormalTok{ tol) \{}
+      \FunctionTok{cat}\NormalTok{(}\StringTok{"La méthode de Newton avec la méthode des sécantes a convergé après"}\NormalTok{, iter, }\StringTok{"itérations.}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+      \FunctionTok{return}\NormalTok{(x\_new)}
+\NormalTok{    \}}
+    
+\NormalTok{    x\_prev }\OtherTok{\textless{}{-}}\NormalTok{ x}
+\NormalTok{    x }\OtherTok{\textless{}{-}}\NormalTok{ x\_new}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\CommentTok{\# Fonction de la méthode de Newton pour résoudre l\textquotesingle{}équation avec la méthode des sécantes}
+\NormalTok{newton\_secant }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(tol, max\_iter) \{}
+  \CommentTok{\# Fonction}
+\NormalTok{  f }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
+    \FunctionTok{return}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{8}\SpecialCharTok{*}\NormalTok{(}\DecValTok{63}\SpecialCharTok{*}\NormalTok{x}\SpecialCharTok{\^{}}\DecValTok{5} \SpecialCharTok{{-}} \DecValTok{70}\SpecialCharTok{*}\NormalTok{x}\SpecialCharTok{\^{}}\DecValTok{3} \SpecialCharTok{+} \DecValTok{15}\SpecialCharTok{*}\NormalTok{x))}
+\NormalTok{  \}}
+
+  \CommentTok{\# Point initial}
+\NormalTok{  x0 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{, }\DecValTok{0}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\DecValTok{1}\NormalTok{)  }\CommentTok{\# Points initiaux pour lesquels nous allons trouver les solutions}
+
+  \CommentTok{\# Stockage des solutions}
+\NormalTok{  roots }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\StringTok{"list"}\NormalTok{, }\FunctionTok{length}\NormalTok{(x0))}
+
+  \CommentTok{\# Appel de la méthode de Newton avec la méthode des sécantes pour chaque point initial}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(x0)) \{}
+\NormalTok{    roots[[i]] }\OtherTok{\textless{}{-}} \FunctionTok{AlgoSecantes}\NormalTok{(f, x0[i], tol, max\_iter)}
+\NormalTok{  \}}
+
+  \CommentTok{\# Retourner les solutions trouvées}
+  \FunctionTok{return}\NormalTok{(roots)}
+\NormalTok{\}}
+
+\CommentTok{\# Paramètres de la méthode de Newton avec la méthode des sécantes}
+\NormalTok{tol }\OtherTok{\textless{}{-}} \FloatTok{1e{-}6}  \CommentTok{\# Tolérance}
+\NormalTok{max\_iter }\OtherTok{\textless{}{-}} \DecValTok{100}  \CommentTok{\# Nombre maximal d\textquotesingle{}itérations}
+
+\CommentTok{\# Appel de la fonction pour trouver les solutions de l\textquotesingle{}équation avec la méthode des sécantes}
+\NormalTok{solutions\_secant }\OtherTok{\textless{}{-}} \FunctionTok{newton\_secant}\NormalTok{(tol, max\_iter)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## La méthode de Newton avec la méthode des sécantes a convergé après 6 itérations.
+## La méthode de Newton avec la méthode des sécantes a convergé après 4 itérations.
+## La méthode de Newton avec la méthode des sécantes a convergé après 1 itérations.
+## La méthode de Newton avec la méthode des sécantes a convergé après 4 itérations.
+## La méthode de Newton avec la méthode des sécantes a convergé après 6 itérations.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Affichage des solutions}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Les solutions de l\textquotesingle{}équation sont:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Les solutions de l'équation sont:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(solutions\_secant)) \{}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"Solution"}\NormalTok{, i, }\StringTok{":"}\NormalTok{, solutions\_secant[[i]], }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Solution 1 : -0.9061798 
+## Solution 2 : -0.5384693 
+## Solution 3 : 0 
+## Solution 4 : 0.5384693 
+## Solution 5 : 0.9061798
+\end{verbatim}
+
+Pour la fonction sur \(\mathbb R_+^\star\) \[
+f(x) = 1/x+\ln(x)-2
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mafonc }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) }\DecValTok{1}\SpecialCharTok{/}\NormalTok{x}\SpecialCharTok{+}\FunctionTok{log}\NormalTok{(x)}\SpecialCharTok{{-}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercice-2}{%
+\subsection{Exercice 2}\label{exercice-2}}
+
+On veut étudier le point fixe de la fonction suivante sur \([0,1]\): \[
+f(x) =  \cos(x)
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Appliquer les deux algorithmes précédents sur la fonction bien choisie.}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercice-3}{%
+\subsection{Exercice 3}\label{exercice-3}}
+
+Il peut être intéressant de prendre le log de la fonction : \[
+\ln(f(\lambda)) = n\ln(\lambda) - \lambda \sum_{i=1}^n x_i
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Appliquer les deux algorithmes sur une fonction bien choisie }
+\CommentTok{\# et comparer le résultat avec l\textquotesingle{}inverse de la moyenne des x\_i}
+\end{Highlighting}
+\end{Shaded}
+
+A comparer par rapport à \[
+\hat{\lambda} = \frac{1}{\bar{x}_n}
+\]
+
+\end{document}

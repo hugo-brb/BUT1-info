@@ -1,0 +1,57 @@
+body {
+  width: 80%;
+  max-width: 500px;
+  margin: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 10px;
+}
+
+div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 30px;
+  gap: 20px;
+}
+
+div label {
+  width: 240px;
+}
+
+form input{
+  flex: 1;
+}
+
+form textarea {
+  flex: 1;
+  resize: vertical;
+}
+
+form select{
+  flex: 1;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#email:invalid{
+  border: 2px solid tomato;
+  background-color: pink;
+}
+
+p input {
+  width: 100%;
+  border: 1px solid grey;
+  background-color: rgb(240, 240, 240);
+  height: 40px;
+}
+

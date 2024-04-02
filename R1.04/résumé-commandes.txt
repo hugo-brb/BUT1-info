@@ -1,0 +1,110 @@
+Ce fichier est à compléter avec toutes les commandes que vous verrez pendant les TP.
+Il est possible de s'inspirer des descriptions des commandes fournies dans les pages de manuel,
+que ce soit en anglais (man COMMANDE) ou en français (man-fr COMMANDE).
+Il est aussi conseillé de noter les options les plus importantes et de noter un exemple d'utilisation de chaque commande.
+
+Nom de la	Description de ce que fait la commande
+Commande
+
+cd		Change Directory
+		Change le répertoire courant
+		cd R1.04/tp1
+
+ls		list directory contents
+		Afficher le contenu de répertoires
+		ls R1.04
+
+ls -l		Affichage détaillé d'un fichier ou d'un répertoire
+		ls -l R1.04
+		ls -l toto.txt
+
+cat 		Affiche le contenu d'un fichier
+
+less		Visualise un texte
+
+mkdir		Crée des répertoires
+
+cp		Copie un/des fichier(s)
+
+cp -r		Copie un/des répertoire(s)
+
+mv		Déplace (et renomme) des fichiers et repertoires
+
+rm		Supprime un/des fichier(s)
+
+rm -r		Supprime un/des répertoire(s)
+
+java		Exécution d'un fichier .java
+
+javac		Compilation d'un fichier .java
+
+./toto		Exécution d'un programme dans le répertoire courant
+
+pstree -u	Affiche l'arbre de tous les processus
+
+ps [-ef | aux]	Affiche tous les processus sous forme de liste
+
+pst		Affiche uniquement mes processus
+
+exit 		Met fin au shell
+
+alias 		Permet de créer des raccourcis de commandes
+
+sort		Fais un tri parmis les resultat (s'utilise dans un tube)
+
+getent passwd	Affiche les utilisateurs connu par le system
+
+grep		Permet de garder les resultat qui ne contiennent qu'une valeur spécifique
+
+head		Permet de garder les premières lignes du résultat
+
+tail 		Permet de garder les dernières lignes du résultat
+
+cut		Permet d'extraire une ou plusieurs colonne du résultat
+
+uniq		Permet de supprimer les doublons
+
+man -k CHAINE	Permet de chercher les logiciel dont la description contient la chaîne donnée
+
+find REPERTOIRE	Permet de rechercher des entrées dans un répertoire et sa descendance
+
+wc 		Permet de compter le nombre de lignes, de mots et d'octet de la sortie
+
+locate NOM	Permet d'afficher les noms de fichiers contenant une valeur spécifique (local)
+
+ulocal NOM	Permet d'afficher les noms de fichiers contenant une valeur spécifique (erebus4)
+
+lsblk		Liste les périphériques de stockage et les partitions
+
+df -h		Permet de connaître l'espace total, l'espace occupé et l'espace libre sur l'ensemble des partitions montées sur une machine
+
+duf 		Comme df -h mais avec une meilleur présentation
+
+quota		Permet de connaître la place disque qu'occupe un utilisateur et le nombre de fichiers dont il est propriétaire, ainsi que le quota et les limites imposées par le système pour ces 2 quantités
+
+du -h 		Permet de connaître la place disque occupée par un répertoire et donne le détail des sous-répertoires
+
+qdirstat	Logiciel graphique d'analyse de l'espace occupé
+
+7z a		Compresse un dossier/fichier (meilleur méthode)
+
+7z x		Décompresse un dossier/fichier
+
+7z t		Verifie l'intégrité de l'archive
+
+ okteta 	Permet d'éditer les octets d'un fichier (en hexadécimal)
+ 
+ chmod 		Permet de donner des droits d'accès aux fichier et répertoire
+ 		u (users), g(groupe auquel appartient l'user), o (les autres)
+ 		   rwx                   rwx                     rwx
+ 
+ 		000 | 0
+ 		001 | 1 
+ 		010 | 2
+ 		011 | 3
+ 		100 | 4 
+ 		101 | 5
+ 		110 | 6
+ 		111 | 7
+ 		
+

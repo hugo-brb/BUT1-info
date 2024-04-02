@@ -1,0 +1,387 @@
+***********************************************
+BARBIERI Hugo - TP1 : Prise en main du shell
+***********************************************
+
+3. Manipuler plusieurs fichiers en une seule commande (Jokers) 
+==============================================================
+
+1.
+
+barbiehu@pc-dg-027-10:/users/info/pub/1a/R1.04/tp-fichiers$ cp /users/info/pub/1a/R1.04/tp-fichiers/*.java /users/info/etu-1a/barbiehu/R1.04/tp2
+
+2.
+
+barbiehu@pc-dg-027-10:/users/info/pub/1a/R1.04/tp-fichiers$ ls -l
+total 80
+-rw-r--r-- 1 bonnaudl info 14859  9 sept.  2013 Avare.txt
+drwxr-xr-x 2 bonnaudl info  4096 11 oct.   2021 dossier
+-rw-r--r-- 1 bonnaudl info   413 30 sept.  2021 Essai.class
+-rw-r--r-- 1 bonnaudl info   131 30 sept.  2021 Essai.java
+-rwxr-xr-x 1 bonnaudl info    17 25 oct.   2021 essai-script
+-rw-r--r-- 1 bonnaudl info   430  8 oct.   2021 Prg.class
+-rw-r--r-- 1 bonnaudl info   153  3 oct.   2021 Prg.java
+-rw-r--r-- 1 bonnaudl info   282  3 oct.   2021 Proverbes.txt
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto1
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto2
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto3
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto4
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto5
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto6
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto7
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto8
+-rw-r--r-- 1 bonnaudl info    14  4 oct.   2021 toto9
+
+3.
+
+barbiehu@pc-dg-027-10:/users/info/pub/1a/R1.04/tp-fichiers$ cp P*.* /users/info/etu-1a/barbiehu/R1.04/tp2
+
+4.
+
+barbiehu@pc-dg-027-10:/users/info/pub/1a/R1.04/tp-fichiers$ cp toto[2468] /users/info/etu-1a/barbiehu/R1.04/tp2
+
+4. Processus
+============
+
+4.1 Arborescence de processus
+-----------------------------
+
+1.
+
+barbiehu@pc-dg-027-10:~$ ps -ef
+UID          PID    PPID  C STIME TTY          TIME CMD
+
+==> ce sont donc les attributs UID, PID, PPID, C, STIME, TTY, TIME et CMD
+
+2.
+
+barbiehu@pc-dg-027-10:~$ ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+
+==> Ce sont les attributs USER, PID, %CPU, %MEM, VSZ, RSS, TTY, STAT, START, TIME COMMAND
+
+3.
+
+barbiehu@pc-dg-027-10:~$ ps -f -u barbiehu
+FAIT
+
+4.
+
+barbiehu    9337    1850  0 08:11 ?        00:00:08 /usr/bin/konsole
+barbiehu    9351    9337  0 08:11 pts/1    00:00:00 /bin/bash
+
+Konsole est donc le parent de bash et par conséquent bash est l'enfant de konsole.
+
+5.
+
+Informe en temps réel les processus en cours d'execution.
+
+6.
+
+ps est une liste statique tandis que top est en "live" et bouge en fonction des processus qui s'arrete et qui se lance en temps réel.
+
+7.
+
+barbiehu@pc-dg-027-10:~$ plasma-systemmonitor
+FAIT
+
+4.2 Processus en avant plan, en arrière plan, suspendu
+------------------------------------------------------
+
+1.
+
+barbiehu@pc-dg-027-10:~$ boucle-infinie
+0
+1
+2
+3
+4
+5
+
+2. & 3.
+
+^C
+barbiehu@pc-dg-027-10:~$ boucle-infinie
+0
+1
+2
+3
+
+4.
+
+^Z
+[1]+  Stopped                 boucle-infinie
+
+5.
+
+barbiehu@pc-dg-027-10:~$ fg
+boucle-infinie
+4
+5
+6
+7
+8
+
+Le logiciel se relance en avant plan.
+
+6.
+
+^Z
+[1]+  Stopped                 boucle-infinie
+barbiehu@pc-dg-027-10:~$ bg
+[1]+ boucle-infinie &
+9
+
+Le logiciel continue de s'exectuer mais il est toujours possible de taper des commandes
+
+7.
+
+[1]+  Stopped                 boucle-infinie
+barbiehu@pc-dg-027-10:~$ fg
+boucle-infinie
+102
+103
+^C
+
+2)
+
+Le logiciel ne répond pas et est inutilisable.
+
+3)
+
+Tout fonctionne
+
+4.3 Tuer un processus
+
+1.
+
+barbiehu@pc-dg-027-10:~$ kcalc &
+[4] 23803
+[3]   Done                    kcalc
+barbiehu@pc-dg-027-10:~$ plasma-systemmonitor
+[4]+  Terminated              kcalc
+
+2.
+
+barbiehu@pc-dg-027-10:~$ kcalc &
+[1] 24325
+barbiehu@pc-dg-027-10:~$ kill -9 24325
+
+4.4 Fermeture d'un terminal
+---------------------------
+
+FERMETURE PROPRE
+	1. 2. 3.
+
+	barbiehu@pc-dg-027-10:~$ kcalc &
+	[2] 24788
+	[1]   Killed                  kcalc
+	barbiehu@pc-dg-027-10:~$ ps
+	    PID TTY          TIME CMD
+	  22178 pts/1    00:00:00 bash
+	  24788 pts/1    00:00:00 kcalc
+	  24874 pts/1    00:00:00 ps
+	barbiehu@pc-dg-027-10:~$ exit
+
+	4.
+
+	C'est maintenant le processus : systemd
+
+FERMETURE RAPIDE
+	1. 2. 3. 4. 5.
+	barbiehu@pc-dg-027-10:~$ gedit &
+	[1] 26504
+
+	6. 
+
+	Le texte a disparu.
+
+5. Utilisation efficace du shell
+================================
+
+5.1 éfinir des raccourcis (alias) dans le shell
+-----------------------------------------------
+
+1. 2.
+
+barbiehu@pc-dg-027-10:~$ alias l="ls -l"
+barbiehu@pc-dg-027-10:~$ l
+total 56
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:20 Atelier-Linux
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:59 Desktop
+drwxr-xr-x 3 barbiehu infobut1 4096 15 sept. 16:41 Documents
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:34 Downloads
+-rw-r--r-- 1 barbiehu infobut1    0  6 sept. 15:54 game.001
+-rw-r--r-- 1 barbiehu infobut1  137  6 sept. 15:54 log.001
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Music
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Pictures
+-rw-r--r-- 1 barbiehu infobut1  282  6 sept. 15:18 proverbes.txt~
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Public
+drwxr-xr-x 4 barbiehu infobut1 4096 14 sept. 10:20 R1.01
+drwxr-xr-x 4 barbiehu infobut1 4096 21 sept. 08:13 R1.04
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Templates
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:30 toto
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Videos
+
+5.2 Rendre des alias "permanents"
+---------------------------------
+
+1. 2. 
+
+OK
+
+3.
+
+barbiehu@pc-dg-027-10:~$ ls
+Atelier-Linux  Documents  game.001  Music     proverbes.txt~  R1.01  Templates  Videos
+Desktop        Downloads  log.001   Pictures  Public          R1.04  toto
+barbiehu@pc-dg-027-10:~$ l
+total 56
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:20 Atelier-Linux
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:59 Desktop
+drwxr-xr-x 3 barbiehu infobut1 4096 15 sept. 16:41 Documents
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 15:34 Downloads
+-rw-r--r-- 1 barbiehu infobut1    0  6 sept. 15:54 game.001
+-rw-r--r-- 1 barbiehu infobut1  137  6 sept. 15:54 log.001
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Music
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Pictures
+-rw-r--r-- 1 barbiehu infobut1  282  6 sept. 15:18 proverbes.txt~
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Public
+drwxr-xr-x 4 barbiehu infobut1 4096 14 sept. 10:20 R1.01
+drwxr-xr-x 4 barbiehu infobut1 4096 21 sept. 08:13 R1.04
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Templates
+drwxr-xr-x 2 barbiehu infobut1 4096 14 sept. 08:30 toto
+drwxr-xr-x 2 barbiehu infobut1 4096  6 sept. 13:36 Videos
+barbiehu@pc-dg-027-10:~$ la
+.              .bash_history  Desktop    .gconf      log.001   .profile        R1.04      .viminfo
+..             .bash_logout   .dmrc      .gnupg      .mozilla  proverbes.txt~  Templates  .vscode
+.android       .bashrc        Documents  .gtkrc-2.0  Music     Public          toto       .Xauthority
+Atelier-Linux  .cache         Downloads  .lesshst    Pictures  .purple         .var       .xsession-errors
+.bash_aliases  .config        game.001   .local      .pki      R1.01           Videos
+
+4. 
+
+alias ll="ls -a -l"
+
+5.
+
+barbiehu@pc-dg-027-10:~$ ll
+total 152
+drwx------  24 barbiehu infobut1 4096 21 sept. 09:07 .
+drwxr-xr-x 137 root     root     4096 20 sept. 11:39 ..
+drwxr-xr-x   2 barbiehu infobut1 4096 14 sept. 10:09 .android
+drwxr-xr-x   2 barbiehu infobut1 4096  6 sept. 15:20 Atelier-Linux
+-rw-r--r--   1 barbiehu infobut1   53 21 sept. 09:07 .bash_aliases
+-rw-r--r--   1 barbiehu infobut1   33 21 sept. 09:04 .bash_aliases~
+-rw-------   1 barbiehu infobut1 2112 21 sept. 09:07 .bash_history
+-rw-r--r--   1 barbiehu infobut1  220 15 mai    2017 .bash_logout
+-rw-r--r--   1 barbiehu infobut1 3522 13 juil.  2018 .bashrc
+lrwxrwxrwx   1 barbiehu infobut1   19 21 sept. 07:53 .cache -> /tmp/barbiehu-cache
+drwx------  26 barbiehu infobut1 4096 21 sept. 09:08 .config
+drwxr-xr-x   2 barbiehu infobut1 4096  6 sept. 15:59 Desktop
+-rw-r--r--   1 barbiehu infobut1   25 14 sept. 10:03 .dmrc
+drwxr-xr-x   3 barbiehu infobut1 4096 15 sept. 16:41 Documents
+drwxr-xr-x   2 barbiehu infobut1 4096  6 sept. 15:34 Downloads
+-rw-r--r--   1 barbiehu infobut1    0  6 sept. 15:54 game.001
+drwx------   2 barbiehu infobut1 4096  6 sept. 13:36 .gconf
+drwx------   2 barbiehu infobut1 4096 14 sept. 09:26 .gnupg
+-rw-r--r--   1 barbiehu infobut1  265 21 sept. 07:53 .gtkrc-2.0
+-rw-------   1 barbiehu infobut1   20 21 sept. 07:54 .lesshst
+drwx------   4 barbiehu infobut1 4096  6 sept. 13:36 .local
+-rw-r--r--   1 barbiehu infobut1  137  6 sept. 15:54 log.001
+drwx------   4 barbiehu infobut1 4096  6 sept. 13:43 .mozilla
+drwxr-xr-x   2 barbiehu infobut1 4096  6 sept. 13:36 Music
+drwxr-xr-x   2 barbiehu infobut1 4096  6 sept. 13:36 Pictures
+drwx------   3 barbiehu infobut1 4096 14 sept. 09:26 .pki
+-rw-r--r--   1 barbiehu infobut1  806  8 juil.  2019 .profile
+-rw-r--r--   1 barbiehu infobut1  282  6 sept. 15:18 proverbes.txt~
+drwxr-xr-x   2 barbiehu infobut1 4096  6 sept. 13:36 Public
+drwx------   5 barbiehu infobut1 4096 21 sept. 07:53 .purple
+drwxr-xr-x   4 barbiehu infobut1 4096 14 sept. 10:20 R1.01
+drwxr-xr-x   4 barbiehu infobut1 4096 21 sept. 08:13 R1.04
+drwxr-xr-x   2 barbiehu infobut1 4096  6 sept. 13:36 Templates
+drwxr-xr-x   2 barbiehu infobut1 4096 14 sept. 08:30 toto
+drwxr-xr-x   3 barbiehu infobut1 4096  6 sept. 15:33 .var
+drwxr-xr-x   2 barbiehu infobut1 4096  6 sept. 13:36 Videos
+-rw-------   1 barbiehu infobut1 3468 14 sept. 10:11 .viminfo
+drwxr-xr-x   4 barbiehu infobut1 4096 14 sept. 09:26 .vscode
+-rw-------   1 barbiehu infobut1  228 21 sept. 07:53 .Xauthority
+-rw-------   1 barbiehu infobut1 3562 21 sept. 07:53 .xsession-errors
+
+6.
+
+FAIT
+
+7.
+
+barbiehu@pc-dg-027-10:~/R1.04/tp2$ rm toto[268]
+rm: remove regular file 'toto2'? y
+rm: remove regular file 'toto6'? y
+rm: remove regular file 'toto8'? y
+
+8.
+
+barbiehu@pc-dg-027-10:~/R1.04/tp2$ alias
+alias grep='grep --color=auto'
+alias l='ls -l'
+alias la='ls -a'
+alias ll='ls -a -l'
+alias ls='ls --color=auto'
+alias pst='ps -f -u barbiehu'
+alias rm='rm -i'
+
+9.
+
+La commande montre tout les alias que j'ai défini dans le fichier .bash_aliases
+
+6. Questions diverses
+=====================
+
+6.1 Fichiers cachés
+-------------------
+
+1.
+
+Gedit : clic-droit > 'show hidden files'
+
+2.
+
+Kate : Ctrl+H
+
+3.
+
+Dolphin : - clic-droit > 'show hidden files'
+	  - Menu > List View
+
+6.2 Utilisation efficace du pager less
+--------------------------------------
+
+1.
+
+barbiehu@pc-dg-027-10:~/R1.04$ less Avare-1.0.txt
+
+2.
+
+- Avancer et reculer d'une ligne = Flèches Haut et Bas
+- Avancer et reculer d'une page = Flèches Gauche et Droite
+- Aller à la fin du fichier, en une seule touche = G
+- Revenir au début du fichier, en une seule touche = g
+
+3.
+
+FAIT
+
+4.
+
+Avec la touche : q
+
+5.
+
+On utilise : /MOT_A_CHERCHER --> Par exemple : /père
+
+6.
+
+On utilise la touche : n
+
+7. 
+
+On utilise la touche : N

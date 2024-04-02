@@ -1,0 +1,105 @@
+/* À compléter */
+body{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+}
+h1, h2, p, hr{
+    margin: 0;
+}
+
+h1, h2, .n, #r{
+    font-weight: bold;
+}
+h2{
+    font-size: 14px;
+    margin-top: 35px;
+}
+
+#fin h2{
+    margin-top: 0;
+}
+
+header{
+    width: 100%;
+    font-size: x-large; /*50px ?*/
+    text-align: left;
+}
+
+#main{
+    display: flex;
+    justify-content: start;
+    gap: 20px;
+    width: 100%;
+
+}
+
+#main section{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+h2, p, button{
+    text-align: center;
+}
+
+hr{
+    width: 50%;
+    margin: auto;
+}
+
+#debut, #milieu{
+    flex-grow: 2;
+    background-color: silver;
+}
+
+#fin{
+    flex-grow: 3;
+    background-color: #D2E4E1;
+}
+
+section{
+    padding: 10px 50px;
+}
+
+button{
+    background-color: gray;
+    box-shadow: none;
+    border: none;
+    border-radius: 7px;
+    width: 7em;
+    height: 2.5em;
+    margin: auto;
+}
+#bfin{
+    background-color: #1AAE9F;
+}
+
+#border{
+    border: 3px solid #207868;
+    margin-top: -10px;
+    height: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+fieldset{
+    border: none;
+}
+
+@media  (max-width: 600px) {
+    /* À compléter */
+    #main{
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 20px;
+    }
+    #main > *{
+        flex-grow: 1;
+    }
+}

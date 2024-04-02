@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ControleMachine_R101_2023_2024.iml" filepath="$PROJECT_DIR$/ControleMachine_R101_2023_2024.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Partie1_Etudiant/Partie1_Etudiant.iml" filepath="$PROJECT_DIR$/Partie1_Etudiant/Partie1_Etudiant.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Partie2_Iles/Partie2_Iles.iml" filepath="$PROJECT_DIR$/Partie2_Iles/Partie2_Iles.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Partie3_Polar/Partie3_Polar.iml" filepath="$PROJECT_DIR$/Partie3_Polar/Partie3_Polar.iml" />
+    </modules>
+  </component>
+</project>
